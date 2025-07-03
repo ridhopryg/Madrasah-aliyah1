@@ -1,63 +1,1094 @@
+/* Variabel Warna - Biru Denim Minimalis (Revisi Final) */
+:root {
+    --primary-denim: #2C3E50;     /* Biru gelap, hampir hitam, untuk header, footer, judul utama */
+    --denim-blue: #4682B4;        /* Biru baja / denim - HANYA untuk elemen non-teks / aksen visual (backgrounds, borders, icons) */
+    --light-denim: #6A9ACF;       /* Biru denim lebih terang (untuk aksen background / hover subtle) */
+    --accent-gold: #FFD700;       /* Emas sebagai aksen minimalis yang kontras */
+    --light-gray: #F8F8F8;        /* Latar belakang terang yang bersih */
+    --medium-gray: #E0E0E0;       /* Garis pemisah, border tipis */
+    --white: #FFFFFF;             /* Putih murni */
+    --text-dark: #222222;         /* Warna teks gelap utama, hampir hitam */
+    --text-light: #555555;        /* Warna teks abu-abu gelap untuk paragraf */
+    --text-lighter: #888888;      /* Warna teks abu-abu lebih terang (misal: tanggal) */
+}
+
+/* General Styling */
 body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f0f4f8;
-  color: #333;
+    font-family: 'Inter', sans-serif; /* Font modern, bersih */
+    margin: 0;
+    padding: 0;
+    background-color: var(--white);
+    color: var(--text-light); /* Warna teks umum adalah abu-abu gelap */
+    line-height: 1.7; /* Sedikit lebih lega untuk keterbacaan */
 }
 
-header {
-  background-color: #2d5f88;
-  padding: 2rem;
-  text-align: center;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 25px; /* Padding samping yang cukup */
 }
 
-header h1,
-header p,
-header a {
-  color: white; /* ✅ TULISAN DI HEADER PUTIH SEMUA */
+h1, h2, h3, h4 {
+    font-family: 'Inter', sans-serif; /* Gunakan font yang sama untuk konsistensi minimalis */
+    color: var(--primary-denim); /* Judul menggunakan primary-denim (biru gelap) */
+    text-align: center;
+    margin-bottom: 25px;
+    line-height: 1.3;
+    font-weight: 600; /* Sedikit lebih tebal untuk judul */
 }
 
-section {
-  padding: 2rem;
-  max-width: 800px;
-  margin: auto;
+h2 {
+    font-size: 2.6em;
+    margin-top: 50px;
+    position: relative;
+    padding-bottom: 15px;
 }
 
-#contact {
-  background-color: #2d5f88;
-  color: white;
-  border-radius: 12px;
-  padding: 2rem;
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px; /* Lebih pendek untuk minimalis */
+    height: 3px; /* Lebih tipis */
+    background-color: var(--denim-blue); /* Garis bawah judul tetap biru denim (elemen visual) */
+    border-radius: 0; /* Tanpa radius */
 }
 
-#contact a {
-  color: white;
-  text-decoration: underline;
+h3 {
+    font-size: 1.7em;
+    font-weight: 500;
 }
 
-form input,
-form textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 1rem;
-  border: none;
-  border-radius: 5px;
+p {
+    margin-bottom: 18px;
+    color: var(--text-light);
 }
 
-form button {
-  background-color: white;
-  color: #2d5f88;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  border-radius: 5px;
+.section-spacing {
+    padding: 80px 0;
 }
 
-footer {
-  text-align: center;
-  padding: 1rem;
-  background-color: #1a3c5d;
-  color: white;
-  font-size: 0.9rem;
+.bg-light {
+    background-color: var(--light-gray); /* Latar belakang terang yang bersih */
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-40 {
+    margin-top: 40px;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--denim-blue); /* Latar belakang tombol adalah biru denim */
+    color: var(--white); /* Warna teks tombol adalah putih */
+    padding: 14px 32px; /* Padding lebih besar */
+    border-radius: 5px; /* Sedikit radius */
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1.05em;
+    letter-spacing: 0.5px; /* Sedikit spasi antar huruf */
+}
+
+.btn:hover {
+    background-color: #3a70a0; /* Sedikit lebih gelap dari denim-blue */
+    transform: translateY(-2px);
+}
+
+.btn-nav {
+    padding: 8px 18px;
+    font-size: 0.9em;
+    border-radius: 5px;
+    background-color: var(--accent-gold); /* Tombol PPDB dengan aksen emas */
+    color: var(--primary-denim); /* Teks tombol PPDB adalah primary-denim (biru gelap) */
+}
+
+.btn-nav:hover {
+    background-color: #e6c200;
+    color: var(--primary-denim);
+}
+
+/* Header - Top Bar */
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary-denim); /* Warna gelap yang sama dengan header utama */
+    color: #E0E0E0; /* Teks abu-abu terang */
+    padding: 10px 25px;
+    font-size: 0.85em;
+    flex-wrap: wrap;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Garis pemisah tipis */
+}
+
+.header-top .contact-info span {
+    margin-right: 25px;
+}
+
+.header-top .contact-info i {
+    margin-right: 8px;
+    color: var(--accent-gold); /* Ikon dengan aksen emas */
+}
+
+.header-top .social-links a {
+    color: #E0E0E0;
+    margin-left: 18px;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+}
+
+.header-top .social-links a:hover {
+    color: var(--accent-gold);
+}
+
+/* Header - Main */
+.main-header {
+    background-color: var(--primary-denim);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Shadow lebih halus */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px; /* Padding lebih besar */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 65px; /* Ukuran logo sedikit lebih besar */
+    width: 65px;
+    border-radius: 50%;
+    margin-right: 18px;
+    border: 2px solid var(--accent-gold); /* Border aksen emas */
+}
+
+.logo-text h1 {
+    margin: 0;
+    color: var(--white);
+    font-size: 1.9em;
+    text-align: left;
+    font-weight: 700;
+}
+
+.logo-text p {
+    margin: 0;
+    font-size: 0.9em;
+    color: #ccc;
+    text-align: left;
+}
+
+/* Main Navigation */
+.main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.main-nav ul li {
+    position: relative;
+    margin-left: 35px; /* Spasi antar menu */
+}
+
+.main-nav ul li a {
+    color: var(--white); /* Teks navigasi adalah putih */
+    text-decoration: none;
+    font-weight: 500;
+    padding: 12px 0;
+    display: block;
+    transition: color 0.3s ease;
+    font-size: 1.05em;
+}
+
+.main-nav ul li a:hover {
+    color: var(--accent-gold); /* Hover navigasi menjadi emas */
+}
+
+/* Dropdown Menu */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--primary-denim);
+    min-width: 220px; /* Lebar minimal */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1); /* Shadow lebih halus */
+    z-index: 1;
+    border-top: 3px solid var(--denim-blue); /* Garis aksen biru denim */
+    border-radius: 0 0 5px 5px;
+    list-style: none;
+    padding: 10px 0;
+}
+
+.dropdown-content li a {
+    color: var(--white); /* Teks dropdown adalah putih */
+    padding: 12px 25px; /* Padding lebih besar */
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.dropdown-content li a:hover {
+    background-color: #3a4f63; /* Sedikit lebih terang dari primary-denim */
+    color: var(--accent-gold); /* Hover dropdown menjadi emas */
+}
+
+/* Hamburger Menu Icon */
+.menu-icon {
+    display: none;
+    color: var(--white);
+    font-size: 2em; /* Ikon lebih besar */
+    cursor: pointer;
+}
+
+#menu-toggle {
+    display: none;
+}
+
+/* Hero Slider */
+.hero-slider {
+    position: relative;
+    width: 100%;
+    height: 550px; /* Tinggi sedikit lebih besar */
+    overflow: hidden;
+    background-color: var(--primary-denim);
+}
+
+.slider-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slider-item.active {
+    opacity: 1;
+}
+
+.slider-content {
+    text-align: center;
+    color: var(--white);
+    padding: 30px;
+    background-color: rgba(0, 0, 0, 0.4); /* Overlay lebih transparan */
+    border-radius: 8px; /* Radius sedikit */
+    max-width: 900px;
+}
+
+.slider-content h2 {
+    color: var(--white);
+    font-size: 3.8em; /* Ukuran font lebih besar */
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2); /* Sedikit shadow untuk teks */
+}
+
+.slider-content p {
+    font-size: 1.4em;
+    margin-bottom: 40px;
+    color: #eee;
+}
+
+.hero-btn {
+    font-size: 1.2em;
+    padding: 18px 40px;
+    background-color: var(--accent-gold);
+    color: var(--primary-denim); /* Teks tombol hero adalah primary-denim (biru gelap) */
+    font-weight: 600;
+}
+
+.hero-btn:hover {
+    background-color: #e6c200;
+    color: var(--primary-denim);
+}
+
+.slider-dots {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 10;
+}
+
+.slider-dot {
+    width: 14px; /* Ukuran dot lebih besar */
+    height: 14px;
+    background-color: rgba(255, 255, 255, 0.4); /* Lebih transparan */
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.slider-dot.active {
+    background-color: var(--accent-gold); /* Dot aktif dengan warna aksen */
+}
+
+/* Announcement Ticker */
+.announcements-section {
+    background-color: var(--denim-blue); /* Latar belakang ticker adalah biru denim */
+    color: var(--white); /* Teks pengumuman adalah putih */
+    padding: 15px 0;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Shadow tipis ke dalam */
+}
+
+.announcement-ticker {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.ticker-label {
+    font-weight: 600;
+    margin-right: 20px;
+    padding-right: 20px;
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 1.05em;
+}
+
+.ticker-content {
+    overflow: hidden;
+    flex-grow: 1;
+    position: relative;
+    height: 1.8em;
+}
+
+.ticker-item {
+    position: absolute;
+    width: 100%;
+    animation: ticker-slide 15s linear infinite;
+    padding-left: 100%;
+}
+
+@keyframes ticker-slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+
+/* About Us Section */
+.about-us {
+    background-color: var(--white);
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 50px; /* Spasi lebih besar */
+    margin-top: 50px;
+}
+
+.about-image {
+    width: 48%; /* Proporsi sedikit diubah */
+    max-width: 550px;
+    height: auto;
+    border-radius: 8px; /* Radius sedikit */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* Shadow lebih halus */
+    transition: transform 0.3s ease;
+}
+
+.about-image:hover {
+    transform: translateY(-5px); /* Efek hover lebih halus */
+}
+
+.about-text {
+    width: 52%;
+    text-align: left;
+}
+
+.about-text p {
+    color: var(--text-light);
+    font-size: 1.05em;
+    margin-bottom: 25px;
+}
+
+.read-more-btn {
+    background-color: var(--primary-denim); /* Latar belakang tombol adalah primary-denim */
+    color: var(--white); /* Teks tombol adalah putih */
+}
+
+.read-more-btn:hover {
+    background-color: #3a4f63;
+}
+
+/* Programs Section */
+.programs {
+    background-color: var(--light-gray);
+}
+
+.program-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 35px; /* Spasi antar grid */
+    margin-top: 50px;
+}
+
+.program-item {
+    background-color: var(--white);
+    padding: 35px; /* Padding lebih besar */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Shadow lebih halus */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-bottom: 3px solid var(--denim-blue); /* Garis bawah aksen biru denim */
+}
+
+.program-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.program-icon {
+    font-size: 3.2em; /* Ukuran ikon lebih besar */
+    color: var(--denim-blue); /* Ikon program adalah biru denim */
+    margin-bottom: 25px;
+}
+
+.program-item h3 {
+    color: var(--primary-denim);
+    margin-bottom: 12px;
+    font-size: 1.7em;
+    font-weight: 600;
+}
+
+.program-item p {
+    color: var(--text-light);
+    font-size: 0.98em;
+}
+
+/* Facilities Section */
+.facilities {
+    background-color: var(--white);
+}
+
+.facility-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 35px;
+    margin-top: 50px;
+}
+
+.facility-item {
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.facility-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.facility-item img {
+    width: 100%;
+    height: 230px; /* Tinggi gambar sedikit lebih besar */
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.facility-item:hover img {
+    transform: scale(1.03);
+}
+
+.facility-item h3 {
+    color: var(--primary-denim);
+    margin: 25px 0 12px;
+    font-size: 1.6em;
+    font-weight: 600;
+}
+
+.facility-item p {
+    padding: 0 25px 25px;
+    font-size: 0.98em;
+    color: var(--text-light);
+}
+
+/* News & Events Section */
+.news-events {
+    background-color: var(--light-gray);
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 35px;
+    margin-top: 50px;
+}
+
+.news-item {
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.news-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.news-item img {
+    width: 100%;
+    height: 210px; /* Tinggi gambar berita */
+    object-fit: cover;
+    display: block;
+}
+
+.news-item h3 {
+    color: var(--primary-denim);
+    text-align: left;
+    font-size: 1.5em;
+    margin: 20px 25px 10px;
+    font-weight: 600;
+}
+
+.news-item .date {
+    font-size: 0.9em;
+    color: var(--text-lighter); /* Tanggal lebih terang */
+    margin: 0 25px 15px;
+    display: block;
+}
+.news-item .date i {
+    margin-right: 8px;
+    color: var(--denim-blue); /* Ikon tanggal tetap biru denim */
+}
+
+.news-item p {
+    font-size: 0.98em;
+    margin: 0 25px 25px;
+    color: var(--text-light);
+}
+
+.news-item .read-more {
+    color: var(--primary-denim); /* Teks "Baca Selengkapnya" adalah primary-denim */
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    display: inline-block;
+    padding: 0 25px 25px;
+}
+
+.news-item .read-more:hover {
+    color: var(--denim-blue); /* Hovernya ke biru denim */
+}
+
+.news-item .read-more i {
+    margin-left: 8px;
+}
+
+.view-all-btn {
+    background-color: var(--primary-denim);
+    margin-top: 35px;
+}
+.view-all-btn:hover {
+    background-color: #3a4f63;
+}
+
+
+/* Gallery Section */
+.gallery-section {
+    background-color: var(--white);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px; /* Spasi lebih kecil untuk galeri */
+    margin-top: 50px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Shadow minimal */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.02);
+    opacity: 0.95;
+}
+
+/* Testimonials Section */
+.testimonials-section {
+    background-color: var(--light-gray);
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 35px;
+    margin-top: 50px;
+}
+
+.testimonial-item {
+    background-color: var(--white);
+    padding: 35px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    border-left: 4px solid var(--accent-gold); /* Garis aksen emas */
+}
+
+.testimonial-item .quote {
+    font-style: italic;
+    font-size: 1.15em;
+    color: var(--text-dark); /* Teks kutipan menggunakan text-dark */
+    margin-bottom: 25px;
+    line-height: 1.8;
+}
+
+.testimonial-item .author {
+    font-weight: 600;
+    color: var(--primary-denim); /* Nama penulis menggunakan primary-denim */
+    font-size: 0.98em;
+}
+
+/* PPDB CTA Section */
+.ppdb-cta {
+    /* Latar belakang dengan overlay primary-denim dan gambar */
+    background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), url('https://via.placeholder.com/1500x400/4682B4/ffffff?text=Background+PPDB') no-repeat center center/cover;
+    color: var(--white);
+    padding: 90px 0; /* Padding lebih besar */
+    text-align: center;
+}
+
+.ppdb-cta h2 {
+    color: var(--white);
+    font-size: 3.2em;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+.ppdb-cta p {
+    font-size: 1.3em;
+    max-width: 750px;
+    margin: 0 auto 35px;
+    color: #eee;
+}
+
+.ppdb-btn {
+    background-color: var(--accent-gold);
+    padding: 18px 45px;
+    font-size: 1.3em;
+    font-weight: 600;
+    color: var(--primary-denim); /* Teks tombol PPDB adalah primary-denim */
+}
+
+.ppdb-btn:hover {
+    background-color: #e6c200;
+    color: var(--primary-denim);
+}
+
+.ppdb-deadline {
+    margin-top: 25px;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--white); /* Warna putih untuk deadline */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Contact Section */
+.contact-section {
+    background-color: var(--white);
+}
+
+.contact-content {
+    display: flex;
+    gap: 50px;
+    margin-top: 50px;
+    flex-wrap: wrap;
+}
+
+.contact-info, .contact-form {
+    flex: 1;
+    min-width: 320px;
+}
+
+.contact-info h3, .contact-form h3 {
+    text-align: left;
+    font-size: 2.1em;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 8px;
+    font-weight: 600;
+    color: var(--primary-denim); /* Judul kontak menggunakan primary-denim */
+}
+.contact-info h3::after, .contact-form h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--denim-blue); /* Garis bawah judul kontak tetap biru denim */
+    border-radius: 0;
+}
+
+.contact-info ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 30px;
+}
+
+.contact-info ul li {
+    margin-bottom: 18px;
+    font-size: 1.05em;
+    color: var(--text-light);
+}
+
+.contact-info ul li i {
+    margin-right: 15px;
+    color: var(--denim-blue); /* Ikon kontak tetap biru denim */
+    font-size: 1.25em;
+    width: 28px;
+    text-align: center;
+}
+
+.map-container {
+    margin-top: 35px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.map-container iframe {
+    border-radius: 8px;
+}
+
+.contact-form .form-group {
+    margin-bottom: 22px;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: var(--primary-denim); /* Label form menggunakan primary-denim */
+    font-size: 1.05em;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 14px; /* Padding lebih besar */
+    border: 1px solid var(--medium-gray); /* Border abu-abu tipis */
+    border-radius: 5px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    color: var(--text-dark); /* Warna teks input menjadi dark */
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--denim-blue); /* Border fokus adalah biru denim */
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(70, 130, 180, 0.15); /* Shadow fokus dengan warna denim */
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 140px; /* Tinggi textarea lebih besar */
+}
+
+.submit-btn {
+    width: auto;
+    padding: 14px 35px;
+    font-size: 1.15em;
+    background-color: var(--denim-blue);
+    color: var(--white); /* Teks tombol submit putih */
+}
+.submit-btn:hover {
+    background-color: #3a70a0;
+}
+
+/* Footer */
+.main-footer {
+    background-color: var(--primary-denim);
+    color: var(--white);
+    padding-top: 60px; /* Padding lebih besar */
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 40px; /* Spasi lebih besar */
+    padding-bottom: 50px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* Garis pemisah tipis */
+}
+
+.footer-col h3 {
+    color: var(--white);
+    text-align: left;
+    margin-bottom: 25px;
+    font-size: 1.7em;
+    position: relative;
+    padding-bottom: 8px;
+    font-weight: 600;
+}
+.footer-col h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: var(--denim-blue); /* Garis bawah footer tetap biru denim */
+    border-radius: 0;
+}
+
+.footer-col p, .footer-col li {
+    font-size: 0.95em;
+    color: #D0D0D0; /* Warna teks abu-abu terang */
+    margin-bottom: 12px;
+    line-height: 1.7;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-col ul li a {
+    color: #D0D0D0; /* Warna link footer adalah abu-abu terang */
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: block;
+    padding: 6px 0;
+}
+
+.footer-col ul li a:hover {
+    color: var(--accent-gold); /* Hover link footer menjadi emas */
+}
+
+.social-links-footer {
+    margin-top: 25px;
+}
+
+.social-links-footer a {
+    color: var(--white);
+    font-size: 1.6em;
+    margin-right: 18px;
+    transition: color 0.3s ease;
+}
+
+.social-links-footer a:hover {
+    color: var(--accent-gold); /* Hover ikon sosial footer menjadi emas */
+}
+
+.contact-footer i {
+    margin-right: 12px;
+    color: var(--denim-blue); /* Ikon footer tetap biru denim */
+}
+
+.footer-bottom {
+    background-color: #21303e; /* Sedikit lebih gelap dari primary-denim */
+    padding: 25px 0;
+    text-align: center;
+    font-size: 0.85em;
+    color: #A0A0A0;
+    margin-top: 25px;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .header-main {
+        flex-wrap: wrap;
+    }
+
+    .logo {
+        margin-bottom: 15px;
+    }
+
+    .main-nav {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: var(--primary-denim);
+        position: absolute;
+        left: 0;
+        top: 100%;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        padding: 10px 0;
+        border-top: 3px solid var(--denim-blue);
+    }
+
+    #menu-toggle:checked + .menu-icon + .nav-links {
+        display: flex;
+    }
+
+    .menu-icon {
+        display: block;
+        order: 2;
+        margin-left: auto;
+    }
+
+    .nav-links li {
+        margin: 0;
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .nav-links li:last-child {
+        border-bottom: none;
+    }
+
+    .nav-links li a {
+        padding: 15px 25px;
+    }
+
+    .dropdown-content {
+        position: static;
+        box-shadow: none;
+        border-top: none;
+        background-color: #3a4f63;
+        border-radius: 0;
+        padding: 0;
+        width: 100%;
+    }
+    .dropdown-content li a {
+        padding-left: 50px;
+    }
+
+    .hero-slider {
+        height: 450px;
+    }
+    .slider-content h2 {
+        font-size: 3em;
+    }
+    .slider-content p {
+        font-size: 1.2em;
+    }
+
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .about-image {
+        width: 85%;
+        margin-bottom: 35px;
+    }
+    .about-text {
+        width: 100%;
+    }
+    .about-text h2, .about-text p {
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    h2 {
+        font-size: 2.2em;
+    }
+    h3 {
+        font-size: 1.6em;
+    }
+
+    .hero-slider {
+        height: 380px;
+    }
+    .slider-content h2 {
+        font-size: 2.5em;
+    }
+    .slider-content p {
+        font-size: 1.1em;
+    }
+    .hero-btn {
+        padding: 12px 30px;
+        font-size: 1.1em;
+    }
+
+    .header-top {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .header-top .contact-info {
+        margin-bottom: 10px;
+    }
+    .header-top .contact-info span {
+        margin-right: 15px;
+    }
+
+    .program-grid,
+    .facility-grid,
+    .news-grid,
+    .gallery-grid,
+    .testimonial-grid,
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-content {
+        flex-direction: column;
+    }
+
+    .logo img {
+        height: 55px;
+        width: 55px;
+    }
+    .logo-text h1 {
+        font-size: 1.7em;
+    }
+    .logo-text p {
+        font-size: 0.85em;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 18px;
+    }
+    .section-spacing {
+        padding: 60px 0;
+    }
+    h2 {
+        font-size: 2em;
+    }
+    .about-image {
+        width: 100%;
+    }
+    .ppdb-cta h2 {
+        font-size: 2.5em;
+    }
+    .ppdb-btn {
+        padding: 12px 30px;
+        font-size: 1.1em;
+    }
 }
