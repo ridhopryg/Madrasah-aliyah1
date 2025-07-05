@@ -337,6 +337,55 @@ p {
     opacity: 1;
 }
 
+/* Specific background images for slider items */
+.slider-item:nth-child(1) {
+    background-image: url('image.png'); /* The first image you uploaded */
+}
+
+.slider-item:nth-child(2) {
+    background-image: url('image.png'); /* The second image you uploaded (assuming you named them uniquely or refer to different ones if multiple are same name) */
+}
+
+.slider-item:nth-child(3) {
+    background-image: url('image.png'); /* The third image, and so on... */
+}
+
+/* Add more .slider-item:nth-child(X) rules for each slider image you have */
+.slider-item:nth-child(4) {
+    background-image: url('image.png');
+}
+.slider-item:nth-child(5) {
+    background-image: url('image.png');
+}
+.slider-item:nth-child(6) {
+    background-image: url('image.png');
+}
+.slider-item:nth-child(7) {
+    background-image: url('image.png');
+}
+.slider-item:nth-child(8) {
+    background-image: url('image.png');
+}
+.slider-item:nth-child(9) {
+    background-image: url('image.png');
+}
+.slider-item:nth-child(10) {
+    background-image: url('image.png');
+}
+.slider-item:nth-child(11) {
+    background-image: url('image.png');
+}
+.slider-item:nth-child(12) {
+    background-image: url('image.png');
+}
+.slider-item:nth-child(13) {
+    background-image: url('image.png');
+}
+.slider-item:nth-child(14) {
+    background-image: url('image.png');
+}
+
+
 .slider-content {
     text-align: center;
     color: var(--white);
