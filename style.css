@@ -386,12 +386,9 @@ p {
 }
 
 .ticker-content {
-    overflow: hidden;
-    flex-grow: 1;
     position: relative;
-    height: 1.8em;
+    min-height: 1.8em;
 }
-
 .ticker-content .ticker-item {
     display: none;
     opacity: 0;
@@ -405,10 +402,6 @@ p {
     display: block;
     opacity: 1;
     position: relative;
-}
-.ticker-content {
-    position: relative;
-    min-height: 1.8em;
 }
     0% { transform: translateX(0); }
     100% { transform: translateX(-100%); }
