@@ -392,14 +392,24 @@ p {
     height: 1.8em;
 }
 
-.ticker-item {
+.ticker-content .ticker-item {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.4s;
     position: absolute;
     width: 100%;
-    animation: ticker-slide 15s linear infinite;
-    padding-left: 100%;
+    left: 0;
+    top: 0;
 }
-
-@keyframes ticker-slide {
+.ticker-content .ticker-item.active {
+    display: block;
+    opacity: 1;
+    position: relative;
+}
+.ticker-content {
+    position: relative;
+    min-height: 1.8em;
+}
     0% { transform: translateX(0); }
     100% { transform: translateX(-100%); }
 }
