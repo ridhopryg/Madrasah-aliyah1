@@ -62,25 +62,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Fungsi untuk hamburger menu
-    const menuToggle = document.getElementById('menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    
-    menuToggle.addEventListener('change', function() {
-        if (this.checked) {
-            navLinks.style.display = 'block';
-            setTimeout(() => {
-                navLinks.style.opacity = '1';
-                navLinks.style.transform = 'translateY(0)';
-            }, 10);
-        } else {
-            navLinks.style.opacity = '0';
-            navLinks.style.transform = 'translateY(-20px)';
-            setTimeout(() => {
-                navLinks.style.display = 'none';
-            }, 300);
-        }
-    });
+// Fungsi untuk hamburger menu
+const menuToggle = document.getElementById('menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+menuToggle.addEventListener('change', function() {
+    if (this.checked) {
+        navLinks.style.display = 'block';
+        setTimeout(() => {
+            navLinks.style.opacity = '1';
+            navLinks.style.transform = 'translateY(0)';
+        }, 10);
+    } else {
+        navLinks.style.opacity = '0';
+        navLinks.style.transform = 'translateY(-20px)';
+        setTimeout(() => {
+            navLinks.style.display = 'none';
+        }, 300);
+    }
+});
     
     // Tutup menu mobile saat item diklik
     document.querySelectorAll('.nav-links a').forEach(link => {
