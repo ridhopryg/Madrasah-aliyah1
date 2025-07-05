@@ -73,3 +73,106 @@ footer#footer {
   background: #e0e0e0;
   font-size: 0.9rem;
 }
+:root {
+  --primary-color: #1560BD;
+  --background-color: #f8f9fb;
+  --text-color: #1c1c1c;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: var(--background-color);
+  color: var(--text-color);
+}
+
+header#header {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+header#header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+header#header nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+}
+
+header#header nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#banner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  background: linear-gradient(to right, #1560BD, #1e90ff);
+  color: white;
+}
+
+#banner .content {
+  flex: 1;
+}
+
+#banner .image img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+section {
+  padding: 2rem;
+}
+
+section h2 {
+  color: var(--primary-color);
+}
+
+footer#footer {
+  text-align: center;
+  padding: 1rem;
+  background: #e0e0e0;
+  font-size: 0.9rem;
+}
+
+/* Tambahan untuk burger menu dan menu responsif */
+.burger {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .burger {
+    display: block;
+  }
+  header#header nav ul {
+    display: none;
+    flex-direction: column;
+    background: var(--primary-color);
+    position: absolute;
+    top: 60px; /* atau sesuaikan dengan tinggi header kamu */
+    left: 0;
+    right: 0;
+    padding: 1rem 0;
+    z-index: 99;
+  }
+  header#header nav ul.active {
+    display: flex;
+  }
+}
