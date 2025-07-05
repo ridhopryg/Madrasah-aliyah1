@@ -64,7 +64,6 @@ document.addEventListener('DOMContentLoaded', function() {
         dropdownLink.addEventListener('click', function(e) {
             // Cegah perilaku default link (navigasi) jika bukan di mode mobile
             // Di desktop, kita tetap ingin hover, jadi e.preventDefault() hanya untuk klik di mobile
-            // Namun, karena dropdown menggunakan hover di desktop, kita hanya perlu handle click di mobile
             // Atau, kita bisa selalu preventDefault dan menggunakan JS untuk navigasi jika tidak ada dropdown
             if (window.innerWidth <= 991) { // Sesuaikan dengan breakpoint menu hamburger Anda
                 e.preventDefault();
@@ -192,6 +191,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // --- Inisialisasi Lightbox ---
+    // Tambahkan atribut data-lightbox ke setiap gambar di galeri
+    const galleryImages = document.querySelectorAll('.gallery-grid img');
+    galleryImages.forEach((img, index) => {
+        // Assuming 'image.png' needs to be unique for each, if not, adjust logic
+        // For demonstration, using the same name, but in a real scenario, these would be unique paths.
+        // Also, add a caption if desired, e.g., img.alt
+        img.setAttribute('data-lightbox', 'gallery-set');
+        img.setAttribute('data-title', `Gallery Image ${index + 1}`); // Example caption
+    });
+
     // Pastikan skrip lightbox sudah dimuat sebelum menginisialisasi
     if (typeof lightbox !== 'undefined') {
         lightbox.option({
