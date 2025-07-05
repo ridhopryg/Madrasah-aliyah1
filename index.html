@@ -10,6 +10,7 @@
 
   <header id="header">
     <h1>Madrasah Aliyah</h1>
+    <div class="burger">&#9776;</div>
     <nav>
       <ul>
         <li><a href="#tentang">Tentang</a></li>
@@ -53,5 +54,10 @@
     <p>&copy; 2025 Madrasah Aliyah Tahfizhul Qur'an</p>
   </footer>
 
+  <script>
+    document.querySelector('.burger').onclick = function() {
+      document.querySelector('header nav ul').classList.toggle('active');
+    }
+  </script>
 </body>
 </html>
