@@ -10,6 +10,7 @@
     --text-dark: #222222;
     --text-light: #555555;
     --text-lighter: #888888;
+    --border-color: #D3D3D3; /* Tambahan untuk border elemen form */
 }
 
 /* ------------------------------------ */
@@ -338,52 +339,11 @@ p {
 }
 
 /* Specific background images for slider items */
-.slider-item:nth-child(1) {
-    background-image: url('image.png'); /* The first image you uploaded */
-}
-
-.slider-item:nth-child(2) {
-    background-image: url('image.png'); /* The second image you uploaded (assuming you named them uniquely or refer to different ones if multiple are same name) */
-}
-
-.slider-item:nth-child(3) {
-    background-image: url('image.png'); /* The third image, and so on... */
-}
-
-/* Add more .slider-item:nth-child(X) rules for each slider image you have */
-.slider-item:nth-child(4) {
-    background-image: url('image.png');
-}
-.slider-item:nth-child(5) {
-    background-image: url('image.png');
-}
-.slider-item:nth-child(6) {
-    background-image: url('image.png');
-}
-.slider-item:nth-child(7) {
-    background-image: url('image.png');
-}
-.slider-item:nth-child(8) {
-    background-image: url('image.png');
-}
-.slider-item:nth-child(9) {
-    background-image: url('image.png');
-}
-.slider-item:nth-child(10) {
-    background-image: url('image.png');
-}
-.slider-item:nth-child(11) {
-    background-image: url('image.png');
-}
-.slider-item:nth-child(12) {
-    background-image: url('image.png');
-}
-.slider-item:nth-child(13) {
-    background-image: url('image.png');
-}
-.slider-item:nth-child(14) {
-    background-image: url('image.png');
-}
+/* Pastikan ini mengarah ke URL gambar Anda yang benar */
+.slider-item:nth-child(1) { background-image: url('https://raw.githubusercontent.com/ridhopryg/Madrasah-aliyah1/main/images/Gedung%20sekolah%201.jpeg'); }
+.slider-item:nth-child(2) { background-image: url('https://raw.githubusercontent.com/ridhopryg/Madrasah-aliyah1/main/images/Gedung%20sekolah%202.jpeg'); }
+.slider-item:nth-child(3) { background-image: url('https://raw.githubusercontent.com/ridhopryg/Madrasah-aliyah1/main/images/Gedung%20sekolah%203.jpeg'); }
+/* Tambahkan lebih banyak jika ada */
 
 
 .slider-content {
@@ -536,14 +496,8 @@ p {
     margin-bottom: 25px;
 }
 
-.read-more-btn {
-    background-color: var(--primary-denim);
-    color: var(--white);
-}
+/* .read-more-btn tidak lagi digunakan untuk bagian ini */
 
-.read-more-btn:hover {
-    background-color: #3a4f63;
-}
 
 /* ------------------------------------ */
 /* PROGRAMS SECTION */
@@ -590,59 +544,6 @@ p {
 .program-item p {
     color: var(--text-light);
     font-size: 0.98em;
-}
-
-/* ------------------------------------ */
-/* FACILITIES SECTION */
-/* ------------------------------------ */
-.facilities {
-    background-color: var(--white);
-}
-
-.facility-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 35px;
-    margin-top: 50px;
-}
-
-.facility-item {
-    background-color: var(--white);
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.facility-item:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
-
-.facility-item img {
-    width: 100%;
-    height: 230px;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.5s ease;
-}
-
-.facility-item:hover img {
-    transform: scale(1.03);
-}
-
-.facility-item h3 {
-    color: var(--primary-denim);
-    margin: 25px 0 12px;
-    font-size: 1.6em;
-    font-weight: 600;
-}
-
-.facility-item p {
-    padding: 0 25px 25px;
-    font-size: 0.98em;
-    color: var(--text-light);
 }
 
 /* ------------------------------------ */
@@ -704,6 +605,7 @@ p {
     color: var(--text-light);
 }
 
+/* `read-more` hanya untuk news, bukan prestasi */
 .news-item .read-more {
     color: var(--primary-denim);
     text-decoration: none;
@@ -716,124 +618,210 @@ p {
 .news-item .read-more:hover {
     color: var(--denim-blue);
 }
-
 .news-item .read-more i {
     margin-left: 8px;
 }
 
-.view-all-btn {
+/* Tombol lihat semua berita */
+.view-more-news-btn { /* Mengganti dari .view-all-btn agar tidak bentrok dengan ID Prestasi */
     background-color: var(--primary-denim);
     margin-top: 35px;
 }
-.view-all-btn:hover {
+.view-more-news-btn:hover {
     background-color: #3a4f63;
 }
 
+
 /* ------------------------------------ */
-/* PRESTASI (ACHIEVEMENTS) SECTION - START */
+/* PRESTASI (ACHIEVEMENTS) SECTION - BARU */
 /* ------------------------------------ */
 .achievements-section {
     padding: 80px 0;
-    background-color: var(--white); /* Gunakan warna latar belakang yang sesuai dengan tema Anda */
-    text-align: center;
+    background-color: var(--white);
+    text-align: center; /* Untuk memusatkan elemen seperti select dan tombol */
 }
 
 .achievements-section h2 {
-    /* Gaya h2 umum sudah didefinisikan di GENERAL STYLING */
-    /* Pastikan h2 di sini menggunakan gaya yang sama */
+    margin-bottom: 30px; /* Sedikit lebih banyak ruang dari judul ke filter */
 }
 
-.achievement-grid {
+.filter-controls {
+    margin-bottom: 40px; /* Jarak antara filter dan grid prestasi */
+    display: flex; /* Menggunakan flexbox untuk penempatan label dan select */
+    justify-content: center; /* Pusatkan di tengah */
+    align-items: center;
+    gap: 15px; /* Jarak antara label dan select */
+}
+
+#prestasi-year-select {
+    padding: 10px 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1.05em;
+    color: var(--text-dark);
+    background-color: var(--white);
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    -webkit-appearance: none; /* Menghilangkan default style dropdown di WebKit */
+    -moz-appearance: none; /* Menghilangkan default style dropdown di Mozilla */
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%20viewBox%3D%220%200%20292.4%20292.4%22%3E%3Cpath%20fill%3D%22%232C3E50%22%20d%3D%22M287%2C197.915L146.2%2C57.115L5.4%2C197.915c-6.8%2C6.8-6.8%2C17.9%2C0%2C24.7c6.8%2C6.8%2C17.9%2C6.8%2C24.7%2C0l116.1-116.1l116.1%2C116.1c6.8%2C6.8%2C17.9%2C6.8%2C24.7%2C0C293.8%2C215.815%2C293.8%2C204.715%2C287%2C197.915z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 15px top 50%, center;
+    background-size: 12px auto;
+}
+
+#prestasi-year-select:focus {
+    border-color: var(--denim-blue);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(70, 130, 180, 0.15);
+}
+
+
+#prestasi-gallery-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsif, min 300px per kolom */
-    gap: 35px; /* Jarak antar kartu, sesuai dengan grid lain */
-    margin-top: 50px; /* Jarak dari judul, sesuai dengan grid lain */
-    max-width: 1200px; /* Pertahankan lebar maksimum container */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Lebih fleksibel */
+    gap: 30px; /* Jarak antar kartu */
+    margin-top: 0; /* Sudah ada margin dari filter-controls */
+    max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
-    padding: 0 25px; /* Sesuaikan dengan padding container umum */
+    padding: 0; /* Container utama sudah ada padding */
 }
 
 .achievement-card {
     background-color: var(--white);
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Gaya shadow yang konsisten */
-    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
-    text-align: left; /* Teks rata kiri seperti item berita */
-    border-bottom: 3px solid var(--accent-gold); /* Garis warna aksen di bawah */
+    align-items: center; /* Pusatkan konten di dalam kartu */
+    text-align: center; /* Pusatkan teks di dalam kartu */
+    padding: 25px 20px; /* Padding internal kartu */
+    border-bottom: 3px solid var(--denim-blue); /* Garis biru di bawah kartu */
+    cursor: pointer; /* Menunjukkan bahwa kartu bisa diklik */
 }
 
 .achievement-card:hover {
-    transform: translateY(-8px); /* Efek hover konsisten */
+    transform: translateY(-8px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-.achievement-card img {
-    width: 100%;
-    height: 210px; /* Tinggi gambar konsisten dengan berita */
-    object-fit: cover;
-    display: block;
-    border-bottom: 1px solid var(--medium-gray); /* Garis pemisah gambar dan konten */
+.achievement-icon {
+    font-size: 3.5em; /* Ukuran ikon */
+    color: var(--accent-gold); /* Warna ikon */
+    margin-bottom: 20px;
 }
 
-.achievement-card .card-content {
-    padding: 20px 25px 25px; /* Padding konsisten dengan item berita */
-    flex-grow: 1; /* Pastikan konten mengisi sisa ruang */
-    display: flex;
-    flex-direction: column;
-}
-
-.achievement-card h3 {
-    font-size: 1.5em; /* Ukuran font judul konsisten dengan berita */
+.achievement-card h3.achievement-title {
+    font-size: 1.6em;
     color: var(--primary-denim);
     margin-bottom: 10px;
     line-height: 1.3;
-    font-weight: 600; /* Konsisten dengan h3 lainnya */
-    text-align: left; /* Override text-align: center dari h3 global */
-}
-
-.achievement-card .card-date {
-    font-size: 0.9em;
-    color: var(--text-lighter);
-    margin-bottom: 15px;
-    display: block;
-}
-.achievement-card .card-date i {
-    margin-right: 8px;
-    color: var(--denim-blue);
-}
-
-.achievement-card .card-description {
-    font-size: 0.98em; /* Ukuran font deskripsi konsisten dengan berita */
-    color: var(--text-light);
-    line-height: 1.6;
-    margin-bottom: 20px;
-    flex-grow: 1; /* Memastikan deskripsi mengisi ruang yang tersedia */
-}
-
-.achievement-card .read-more {
-    display: inline-block;
-    color: var(--primary-denim); /* Warna link konsisten dengan berita */
-    text-decoration: none;
     font-weight: 600;
+    text-align: center; /* Pastikan judul di tengah */
+}
+
+.achievement-card p.achievement-student,
+.achievement-card p.achievement-date {
+    font-size: 0.95em;
+    color: var(--text-lighter);
+    margin-bottom: 8px;
+}
+
+/* Tombol "Lihat Semua Prestasi" */
+#view-all-prestasi-btn {
+    margin-top: 40px; /* Memberikan jarak dari grid prestasi */
+}
+
+/* ------------------------------------ */
+/* MODAL POP-UP (Prestasi Detail) */
+/* ------------------------------------ */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001; /* Pastikan di atas semua elemen lain */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: var(--white);
+    padding: 35px;
+    border-radius: 10px;
+    max-width: 650px;
+    width: 90%; /* Responsif */
+    position: relative;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    text-align: left; /* Konten modal rata kiri */
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 2.5em;
+    color: var(--text-lighter);
+    cursor: pointer;
+    padding: 5px 10px;
+    line-height: 1;
     transition: color 0.3s ease;
-    margin-top: auto; /* Dorong ke bagian bawah card-content */
 }
 
-.achievement-card .read-more:hover {
-    color: var(--denim-blue); /* Efek hover konsisten */
-}
-.achievement-card .read-more i {
-    margin-left: 8px;
+.modal-close-btn:hover {
+    color: var(--primary-denim);
 }
 
-/* ------------------------------------ */
-/* PRESTASI (ACHIEVEMENTS) SECTION - END */
-/* ------------------------------------ */
+.modal-content h3#modal-title {
+    font-size: 2.2em;
+    color: var(--primary-denim);
+    margin-bottom: 15px;
+    text-align: left; /* Override h3 global */
+    font-weight: 700;
+}
 
+.modal-content p#modal-student,
+.modal-content p#modal-date {
+    font-size: 1.1em;
+    color: var(--text-light);
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.modal-content p#modal-date {
+    font-style: italic;
+    color: var(--text-lighter);
+}
+
+.modal-content p#modal-description {
+    font-size: 1.05em;
+    color: var(--text-dark);
+    margin-top: 20px;
+    line-height: 1.7;
+    white-space: pre-wrap; /* Mempertahankan format baris baru dari deskripsi */
+}
 
 /* ------------------------------------ */
 /* GALLERY SECTION */
@@ -1193,9 +1181,7 @@ p {
     .program-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    .facility-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    /* Facilities section was removed, so no need for .facility-grid */
     .news-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -1207,7 +1193,7 @@ p {
     }
     
     /* Prestasi (Achievements) Responsif */
-    .achievement-grid {
+    #prestasi-gallery-container { /* Ganti dari .achievement-grid ke ID */
         grid-template-columns: repeat(2, 1fr); /* 2 kolom di tablet landscape */
     }
 
@@ -1262,6 +1248,11 @@ p {
     /* Tampilkan ikon menu hamburger */
     .menu-icon {
         display: block; /* Hamburger icon muncul di bawah 991px */
+    }
+
+    /* Sembunyikan checkbox menu-toggle */
+    #menu-toggle {
+        display: none;
     }
 
     /* Sembunyikan menu utama dan atur sebagai kolom */
@@ -1330,9 +1321,7 @@ p {
     .program-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    .facility-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    /* Facilities section was removed, so no need for .facility-grid */
     .news-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -1347,7 +1336,7 @@ p {
     }
     
     /* Prestasi (Achievements) Responsif */
-    .achievement-grid {
+    #prestasi-gallery-container { /* Ganti dari .achievement-grid ke ID */
         grid-template-columns: repeat(2, 1fr); /* 2 kolom di tablet portrait */
         gap: 25px; /* Sesuaikan gap */
     }
@@ -1387,6 +1376,25 @@ p {
         display: flex;
         align-items: center;
     }
+
+    /* Modal Responsiveness for smaller screens */
+    .modal-content {
+        max-width: 95%; /* Lebih lebar di layar kecil */
+        padding: 25px 20px;
+    }
+    .modal-content h3#modal-title {
+        font-size: 1.8em;
+    }
+    .modal-content p#modal-student,
+    .modal-content p#modal-date,
+    .modal-content p#modal-description {
+        font-size: 1em;
+    }
+    .modal-close-btn {
+        font-size: 2em;
+        top: 10px;
+        right: 10px;
+    }
 }
 
 /* Mobile (max-width: 767px) - Override untuk layar yang lebih kecil */
@@ -1420,7 +1428,7 @@ p {
     
     /* Single column layouts */
     .program-grid,
-    .facility-grid,
+    /* .facility-grid (removed), */
     .news-grid,
     .testimonial-grid,
     .footer-grid {
@@ -1434,23 +1442,24 @@ p {
     } */
     
     /* Prestasi (Achievements) Responsif */
-    .achievement-grid {
+    #prestasi-gallery-container { /* Ganti dari .achievement-grid ke ID */
         grid-template-columns: 1fr; /* 1 kolom di mobile */
         gap: 20px; /* Sesuaikan gap */
     }
 
     /* Adjust card paddings */
     .program-item,
-    .facility-item,
+    /* .facility-item (removed), */
     .news-item,
     .testimonial-item,
     .achievement-card { /* Tambahkan achievement-card di sini */
         padding: 25px;
     }
     /* Khusus untuk .achievement-card .card-content */
-    .achievement-card .card-content {
-        padding: 20px 25px 25px; /* Pertahankan padding internal */
-    }
+    /* Ini dihapus karena achievement-card tidak lagi punya .card-content */
+    /* .achievement-card .card-content {
+        padding: 20px 25px 25px;
+    } */
     
     /* PPDB CTA */
     .ppdb-cta h2 {
@@ -1507,5 +1516,11 @@ p {
     /* Gallery becomes single column on very small screens */
     .gallery-grid {
         grid-template-columns: 1fr;
+    }
+
+    /* Filter kontrol prestasi */
+    .filter-controls {
+        flex-direction: column; /* Label dan select jadi vertikal */
+        gap: 10px; /* Kurangi jarak */
     }
 }
