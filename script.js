@@ -255,7 +255,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // --- Prestasi Section (Dynamic Filtering & Modals) ---
+    // Blok kode ini dikomentari karena Anda ingin menghapus bagian prestasi sepenuhnya.
     // Inisialisasi hanya jika elemen-elemen prestasi ditemukan di halaman saat ini
+    /*
     const prestasiContainer = document.getElementById('prestasi-gallery-container');
     const yearSelect = document.getElementById('prestasi-year-select');
     const viewAllPrestasiBtn = document.getElementById('view-all-prestasi-btn');
@@ -373,6 +375,7 @@ document.addEventListener('DOMContentLoaded', function() {
         populateYearSelect();
         renderPrestasi('all', initialPrestasiDisplayLimit);
     } // Akhir dari if (prestasiContainer ...)
+    */
 
     // --- Inisialisasi Lightbox untuk Galeri Foto ---
     // Pastikan skrip lightbox sudah dimuat sebelum menginisialisasi
