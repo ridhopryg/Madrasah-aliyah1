@@ -1,5 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Universal functions (Header, Slider, etc.)
+
+    // =====================================
+    //          GLOBAL / UNIVERSAL FUNCTIONS
+    //          (Header, Mobile Menu)
+    // =====================================
     const menuToggle = document.getElementById('menu-toggle');
     const navLinks = document.querySelector('.nav-links');
 
@@ -23,7 +27,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Hero Slider
+
+    // =====================================
+    //             HERO SLIDER
+    // =====================================
     const sliderItems = document.querySelectorAll('.hero-slider .slider-item');
     const sliderDotsContainer = document.querySelector('.hero-slider .slider-dots');
     let currentSlide = 0;
@@ -78,38 +85,51 @@ document.addEventListener('DOMContentLoaded', function() {
             startSlideShow();
         }
 
+        // Initialize slider
         showSlide(currentSlide);
         startSlideShow();
     }
 
-    // Announcement Ticker
-    const tickerContent = document.querySelector('.announcement-ticker .ticker-content');
-    if (tickerContent) {
-        let tickerPosition = 0;
-        const tickerItems = tickerContent.querySelectorAll('.ticker-item');
-        const itemHeight = tickerItems.length > 0 ? tickerItems[0].offsetHeight + 10 : 0; // Item height + margin/padding
-        let totalItems = tickerItems.length;
 
-        if (totalItems > 1) {
-            setInterval(() => {
-                tickerPosition++;
-                tickerContent.style.transition = 'transform 0.5s ease-in-out';
-                tickerContent.style.transform = `translateY(-${tickerPosition * itemHeight}px)`;
+    // =====================================
+    //          ANNOUNCEMENT TICKER
+    // =====================================
+    const tickerContentWrapper = document.querySelector('.announcement-ticker .ticker-content');
+    if (tickerContentWrapper) {
+        const tickerItems = tickerContentWrapper.querySelectorAll('.ticker-item');
+        let currentTickerIndex = 0;
+        const intervalTime = 3000; // Change announcement every 3 seconds
 
-                // When the last item is reached, reset to the first with no transition
-                if (tickerPosition === totalItems) {
-                    setTimeout(() => {
-                        tickerContent.style.transition = 'none';
-                        tickerContent.style.transform = `translateY(0)`;
-                        tickerPosition = 0;
-                    }, 500); // Needs to match the transition duration
-                }
-            }, 3000); // Change announcement every 3 seconds
+        // Only run if there are ticker items
+        if (tickerItems.length > 0) {
+            function showTickerItem(index) {
+                tickerItems.forEach((item, i) => {
+                    if (i === index) {
+                        item.classList.add('active'); // Add 'active' class
+                    } else {
+                        item.classList.remove('active'); // Remove 'active' class from others
+                    }
+                });
+            }
+
+            function nextTickerItem() {
+                currentTickerIndex = (currentTickerIndex + 1) % tickerItems.length;
+                showTickerItem(currentTickerIndex);
+            }
+
+            // Display the first item immediately
+            showTickerItem(currentTickerIndex);
+
+            // Start the interval for changing announcements
+            setInterval(nextTickerItem, intervalTime);
         }
     }
 
 
-    // --- Data untuk Prestasi dan Berita (dipindahkan ke sini) ---
+    // =====================================
+    //        DATA: ACHIEVEMENTS & NEWS
+    //        (Moved here for central access)
+    // =====================================
     const allPrestasiData = [
         {
             title: 'Juara 1 Lomba Sains Tingkat Provinsi',
@@ -175,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function() {
             description: 'Tim basket putra madrasah berhasil meraih juara kedua dalam turnamen basket antar sekolah tingkat kota. Kerja keras dan semangat tim yang tinggi membuahkan hasil yang membanggakan.',
             icon: 'fas fa-basketball-ball'
         }
-        // Tambahkan data prestasi lainnya di sini
+        // Add more achievement data here
     ];
 
     const allNewsData = [
@@ -214,15 +234,19 @@ document.addEventListener('DOMContentLoaded', function() {
             description: 'Siswa-siswi pilihan berkesempatan melakukan kunjungan studi ke salah satu pusat tahfiz terkemuka di tingkat nasional. Kunjungan ini diharapkan dapat memberikan inspirasi dan motivasi bagi para santri dalam menghafal Al-Quran serta menambah wawasan tentang metode tahfiz modern.',
             image: 'https://via.placeholder.com/300x180/8da7c4/ffffff?text=Berita+Kunjungan'
         }
-        // Tambahkan data berita lainnya di sini
+        // Add more news data here
     ];
 
-    // --- Highlighting Prestasi dan Berita di Index.html ---
+
+    // =====================================
+    //      HIGHLIGHTS SECTION (Index.html)
+    //      (Latest Achievements & News)
+    // =====================================
     const prestasiHighlightContainer = document.getElementById('prestasi-highlight-container');
     const newsHighlightContainer = document.getElementById('news-highlight-container');
 
     if (prestasiHighlightContainer) {
-        // Tampilkan 3 prestasi terbaru
+        // Display 3 latest achievements
         const latestPrestasi = allPrestasiData.slice(0, 3);
         latestPrestasi.forEach(prestasi => {
             const card = document.createElement('article');
@@ -242,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (newsHighlightContainer) {
-        // Tampilkan 3 berita terbaru
+        // Display 3 latest news
         const latestNews = allNewsData.slice(0, 3);
         latestNews.forEach(news => {
             const article = document.createElement('article');
@@ -258,7 +282,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- Dynamic Prestasi Section (if added to index.html) ---
+
+    // =====================================
+    //       DYNAMIC ACHIEVEMENTS SECTION
+    //       (Prestasi Page / Full List)
+    // =====================================
     const prestasiGalleryContainer = document.getElementById('prestasi-gallery-container');
     const prestasiYearSelect = document.getElementById('prestasi-year-select');
     const viewAllPrestasiBtn = document.getElementById('view-all-prestasi-btn');
@@ -269,10 +297,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalDate = document.getElementById('modal-date');
     const modalDescription = document.getElementById('modal-description');
 
-    // Only run this block if the elements exist (i.e., you've added the full prestasi section to index.html)
+    // Only run this block if the elements exist (i.e., you've added the full prestasi section to the page)
     if (prestasiGalleryContainer && prestasiYearSelect) {
-        let displayedPrestasiCount = 6; // Jumlah prestasi yang ditampilkan pertama kali
-        const increment = 6; // Jumlah prestasi yang ditambahkan setiap kali klik "Lihat Lebih Banyak"
+        let displayedPrestasiCount = 6; // Number of achievements displayed initially
+        const increment = 6; // Number of achievements added on "Load More" click
 
         function populateYearSelect() {
             const years = [...new Set(allPrestasiData.map(p => p.year))].sort((a, b) => b - a);
@@ -285,7 +313,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        function renderPrestasi(prestasiToRender) {
+        function renderPrestasi() {
             prestasiGalleryContainer.innerHTML = ''; // Clear previous content
             const currentYearFilter = prestasiYearSelect.value;
             let filteredPrestasi = allPrestasiData;
@@ -321,20 +349,20 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // Event Listeners
+        // Event Listeners for Prestasi Section
         prestasiYearSelect.addEventListener('change', function() {
             displayedPrestasiCount = 6; // Reset count on filter change
-            renderPrestasi(allPrestasiData);
+            renderPrestasi();
         });
 
         if (viewAllPrestasiBtn) {
             viewAllPrestasiBtn.addEventListener('click', function() {
                 displayedPrestasiCount += increment;
-                renderPrestasi(allPrestasiData);
+                renderPrestasi();
             });
         }
 
-        // Modal Functionality
+        // Modal Functionality for Prestasi Details
         document.body.addEventListener('click', function(event) {
             if (event.target.classList.contains('show-prestasi-modal')) {
                 event.preventDefault(); // Prevent default link behavior
@@ -361,8 +389,8 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // Initial render on page load
+        // Initial render on page load for Prestasi section
         populateYearSelect();
-        renderPrestasi(allPrestasiData);
+        renderPrestasi();
     }
 });
