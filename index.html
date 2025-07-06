@@ -78,7 +78,7 @@
                     <a href="#program" class="btn hero-btn">Lihat Program Kami</a>
                 </div>
             </div>
-            <div class="slider-item" style="background-image: url('https://raw.githubusercontent.com/ridhopryg/Madrasah-aliyah1/main/images/Gedung%20sekolah%203.jpeg')">
+            <div class="slider-item" style="background-image: url('https://raw.githubusercontent.com/ridhopymain/images/Gedung%20sekolah%203.jpeg')">
                 <div class="container slider-content">
                     <h2>Lingkungan Belajar yang Kondusif dan Islami</h2>
                     <p>Asrama nyaman dan fasilitas lengkap mendukung proses hafalan dan belajar.</p>
@@ -142,44 +142,24 @@
             </div>
         </section>
 
-        <section id="achievements" class="achievements-section">
-    <div class="container">
-        <h2>Prestasi Kami</h2>
-        <div class="achievement-grid">
-            <div class="achievement-card">
-                <img src="path/to/achievement-image1.jpg" alt="Prestasi Juara Lomba Sains">
-                <div class="card-content">
-                    <h3>Juara 1 Lomba Sains Tingkat Provinsi</h3>
-                    <p class="card-date">20 Mei 2024</p>
-                    <p class="card-description">Siswa kami berhasil meraih juara pertama dalam kompetisi sains tahunan tingkat provinsi, menunjukkan keunggulan dalam bidang Fisika.</p>
-                    <a href="#" class="read-more">Baca Selengkapnya &raquo;</a>
+        <section id="prestasi" class="achievements-section section-spacing">
+            <div class="container">
+                <h2>Prestasi Anak Didik Kami</h2>
+
+                <div class="filter-controls" style="margin-bottom: 30px; text-align: center;">
+                    <label for="prestasi-year-select" style="font-size: 1.1em; margin-right: 10px;">Pilih Tahun:</label>
+                    <select id="prestasi-year-select" style="padding: 8px 12px; border-radius: 5px; border: 1px solid var(--border-color);">
+                        </select>
+                </div>
+
+                <div id="prestasi-gallery-container" class="gallery-grid">
+                    </div>
+
+                <div style="text-align: center; margin-top: 30px; margin-bottom: 50px;">
+                    <button id="view-all-prestasi-btn" class="btn primary-btn" style="display: none;">Lihat Semua Prestasi</button>
                 </div>
             </div>
-
-            <div class="achievement-card">
-                <img src="path/to/achievement-image2.jpg" alt="Prestasi Tim Debat">
-                <div class="card-content">
-                    <h3>Tim Debat Raih Medali Emas Nasional</h3>
-                    <p class="card-date">15 April 2024</p>
-                    <p class="card-description">Tim debat sekolah kami kembali mengharumkan nama sekolah dengan meraih medali emas di ajang debat tingkat nasional.</p>
-                    <a href="#" class="read-more">Baca Selengkapnya &raquo;</a>
-                </div>
-            </div>
-
-            <div class="achievement-card">
-                <img src="path/to/achievement-image3.jpg" alt="Prestasi Olahraga Renang">
-                <div class="card-content">
-                    <h3>Siswa Kami Dominasi Lomba Renang Regional</h3>
-                    <p class="card-date">01 Maret 2024</p>
-                    <p class="card-description">Tiga siswa berhasil menyabet berbagai medali emas dan perak dalam kejuaraan renang tingkat regional.</p>
-                    <a href="#" class="read-more">Baca Selengkapnya &raquo;</a>
-                </div>
-            </div>
-
-            </div>
-    </div>
-</section>
-
+        </section>
         <section id="berita" class="news-events section-spacing bg-light">
             <div class="container">
                 <h2>Berita & Pengumuman Terbaru</h2>
@@ -204,7 +184,7 @@
                     </article>
                 </div>
                 <div class="text-center mt-40">
-                    <a href="#" class="btn view-all-btn"></a>
+                    <a href="#" class="btn view-more-news-btn">Lihat Semua Berita</a>
                 </div>
             </div>
         </section>
@@ -270,7 +250,7 @@
                             <li><i class="fas fa-globe"></i> www.matq.sch.id</li>
                         </ul>
                         <div class="map-container">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.816405626998!2d109.34091607421915!3d-0.03801049999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e1d5a7d7b6b1b79%3A0x1d5a1b3c9e6d0a7a!2sPontianak%20City!5e0!3m2!1sen!2sid!4v1719999999999!5m2!1sen!2sid" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.814324274711!2d109.28741341470559!3d-0.0898869999999988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e33e8d6f0f2f0f1%3A0xf0f2f0f1f0f2f0f1!2sMasjid%20Darul%20Muttaqin!5e0!3m2!1sen!2sid!4v1678901234567!5m2!1sen!2sid" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                         </div>
                     </div>
                     <div class="contact-form">
@@ -345,6 +325,16 @@
             </div>
         </div>
     </footer>
+
+    <div id="achievement-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <h3 id="modal-title"></h3>
+            <p id="modal-student"></p>
+            <p id="modal-date"></p>
+            <p id="modal-description"></p>
+        </div>
+    </div>
 
     <script src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
