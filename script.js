@@ -88,44 +88,35 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     ];
 
-    let displayedPrestasiCount = 0;
-    const initialPrestasiDisplayLimit = 6; // Jumlah prestasi yang ditampilkan awal
-    const prestasiContainer = document.getElementById('prestasi-gallery-container');
-    const yearSelect = document.getElementById('prestasi-year-select');
-    const viewAllPrestasiBtn = document.getElementById('view-all-prestasi-btn');
-    const modalOverlay = document.getElementById('prestasi-modal-overlay');
-    const modalCloseBtn = document.getElementById('modal-close-btn');
-
     // --- Slider Hero ---
     const sliderItems = document.querySelectorAll('.slider-item');
     const sliderDotsContainer = document.querySelector('.slider-dots');
     let currentSlide = 0;
     let autoSlideInterval; // Untuk mengontrol interval
 
-    // Buat dots untuk slider
     function createDots() {
-        sliderDotsContainer.innerHTML = ''; // Pastikan bersih sebelum membuat ulang
+        if (!sliderDotsContainer) return; // Pastikan elemen ada
+        sliderDotsContainer.innerHTML = '';
         sliderItems.forEach((_, index) => {
             const dot = document.createElement('span');
-            dot.classList.add('slider-dot'); // Menggunakan class 'slider-dot' sesuai CSS
+            dot.classList.add('slider-dot');
             if (index === 0) dot.classList.add('active');
             dot.addEventListener('click', () => {
                 goToSlide(index);
-                resetAutoSlide(); // Reset timer saat dot diklik
+                resetAutoSlide();
             });
             sliderDotsContainer.appendChild(dot);
         });
     }
 
     function goToSlide(index) {
-        // Hapus kelas 'active' dari semua slider item dan dots
         sliderItems.forEach(item => item.classList.remove('active'));
-        document.querySelectorAll('.slider-dot').forEach(dot => dot.classList.remove('active'));
-
-        // Tambahkan kelas 'active' ke slider item dan dot yang sesuai
+        const dots = document.querySelectorAll('.slider-dot');
+        if (dots.length > 0) { // Pastikan dots ada sebelum mencoba mengaksesnya
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[index].classList.add('active');
+        }
         sliderItems[index].classList.add('active');
-        document.querySelectorAll('.slider-dot')[index].classList.add('active');
-
         currentSlide = index;
     }
 
@@ -141,10 +132,10 @@ document.addEventListener('DOMContentLoaded', function() {
         startAutoSlide();
     }
 
-    // Inisialisasi slider
+    // Inisialisasi slider hanya jika ada slider items
     if (sliderItems.length > 0) {
         createDots();
-        goToSlide(0); // Pastikan slide pertama aktif saat DOMContentLoaded
+        goToSlide(0);
         startAutoSlide();
     }
 
@@ -152,22 +143,23 @@ document.addEventListener('DOMContentLoaded', function() {
     const dropdowns = document.querySelectorAll('.dropdown');
 
     dropdowns.forEach(dropdown => {
-        const dropdownLink = dropdown.querySelector('a'); // Link utama dropdown
-
+        const dropdownLink = dropdown.querySelector('a');
         dropdownLink.addEventListener('click', function(e) {
-            if (window.innerWidth <= 991) { // Hanya aktifkan toggle di mode mobile
-                e.preventDefault(); // Cegah navigasi langsung di mobile
-                // Toggle kelas 'active' pada parent dropdown untuk menampilkan/menyembunyikan sub-menu
+            // Cek jika ini adalah link dropdown dengan href '#' atau kosong (untuk toggle di mobile)
+            const isDropdownParentLink = this.getAttribute('href') === '#' || this.getAttribute('href') === null || this.getAttribute('href') === '';
+
+            if (window.innerWidth <= 991) { // Sesuaikan dengan breakpoint menu hamburger Anda
+                if (isDropdownParentLink) { // Hanya preventDefault jika itu link dropdown parent
+                    e.preventDefault();
+                }
                 dropdown.classList.toggle('active');
 
-                // Tutup dropdown lain yang mungkin terbuka
                 dropdowns.forEach(otherDropdown => {
                     if (otherDropdown !== dropdown && otherDropdown.classList.contains('active')) {
                         otherDropdown.classList.remove('active');
                     }
                 });
             }
-            // Di desktop, CSS :hover akan menangani tampilan dropdown
         });
     });
 
@@ -175,44 +167,43 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.getElementById('menu-toggle');
     const navLinks = document.querySelector('.nav-links');
 
-    menuToggle.addEventListener('change', function() {
-        if (this.checked) {
-            navLinks.classList.add('menu-open');
-            // Tutup semua dropdown saat menu utama dibuka
-            dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
-        } else {
-            navLinks.classList.remove('menu-open');
-            // Tutup semua dropdown saat menu utama ditutup
-            dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
-        }
-    });
-
-    // Tutup menu mobile saat item navigasi diklik
-    navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', function() {
-            if (window.innerWidth <= 991) {
-                const parentLi = this.closest('li');
-                const isDropdownParent = parentLi && parentLi.classList.contains('dropdown');
-                const isPpdbButton = this.classList.contains('btn-nav');
-
-                // Tutup menu jika bukan parent dropdown, atau jika itu tombol PPDB
-                if (!isDropdownParent || isPpdbButton) {
-                    menuToggle.checked = false;
-                    navLinks.classList.remove('menu-open');
-                    dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
-                }
+    if (menuToggle && navLinks) { // Pastikan elemen ada
+        menuToggle.addEventListener('change', function() {
+            if (this.checked) {
+                navLinks.classList.add('menu-open');
+                dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+            } else {
+                navLinks.classList.remove('menu-open');
+                dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
             }
         });
-    });
 
-    // Fungsi untuk menutup menu jika ukuran layar berubah dari mobile ke desktop
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 991) {
+                    const parentLi = this.closest('li');
+                    const isDropdownParent = parentLi && parentLi.classList.contains('dropdown');
+                    const isPpdbButton = this.classList.contains('btn-nav');
+
+                    // Tutup menu jika bukan parent dropdown, atau jika itu tombol PPDB
+                    // Atau jika link menunjuk ke sebuah id di halaman yang sama (smooth scroll)
+                    if (!isDropdownParent || isPpdbButton || this.getAttribute('href').startsWith('#')) {
+                        menuToggle.checked = false;
+                        navLinks.classList.remove('menu-open');
+                        dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+                    }
+                }
+            });
+        });
+    }
+
+    // Tutup menu jika ukuran layar berubah dari mobile ke desktop
     window.addEventListener('resize', function() {
         if (window.innerWidth > 991) {
-            if (menuToggle.checked) {
+            if (menuToggle && menuToggle.checked) {
                 menuToggle.checked = false;
                 navLinks.classList.remove('menu-open');
             }
-            // Pastikan dropdown desktop berfungsi dengan baik (hapus kelas 'active' dari mobile)
             dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
         }
     });
@@ -221,21 +212,23 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- Smooth Scrolling ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-
             const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
+            // Hanya aktifkan smooth scroll jika berada di halaman yang sama
+            if (window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/') || window.location.pathname === '/') {
+                if (targetId === '#') return;
+                e.preventDefault(); // Cegah perilaku default hanya jika ini smooth scroll internal
 
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                const headerOffset = document.querySelector('.main-header').offsetHeight;
-                const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                const offsetPosition = elementPosition - headerOffset - 20;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const headerOffset = document.querySelector('.main-header').offsetHeight;
+                    const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = elementPosition - headerOffset - 20;
 
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             }
         });
     });
@@ -262,134 +255,131 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // --- Prestasi Section (Dynamic Filtering & Modals) ---
+    // Inisialisasi hanya jika elemen-elemen prestasi ditemukan di halaman saat ini
+    const prestasiContainer = document.getElementById('prestasi-gallery-container');
+    const yearSelect = document.getElementById('prestasi-year-select');
+    const viewAllPrestasiBtn = document.getElementById('view-all-prestasi-btn');
+    const modalOverlay = document.getElementById('prestasi-modal-overlay'); // ID disamakan
+    const modalCloseBtn = document.getElementById('modal-close-btn');
 
-    // Fungsi untuk mendapatkan tahun unik dari data prestasi
-    function getUniqueYears() {
-        const years = new Set();
-        allPrestasiData.forEach(item => {
-            const year = new Date(item.date).getFullYear();
-            years.add(year);
-        });
-        return Array.from(years).sort((a, b) => b - a); // Urutkan dari terbaru
-    }
+    if (prestasiContainer && yearSelect && viewAllPrestasiBtn && modalOverlay && modalCloseBtn) {
+        let displayedPrestasiCount = 0;
+        const initialPrestasiDisplayLimit = 6;
 
-    // Fungsi untuk mengisi dropdown tahun
-    function populateYearSelect() {
-        const years = getUniqueYears();
-        yearSelect.innerHTML = '<option value="all">Semua Tahun</option>'; // Opsi default
-        years.forEach(year => {
-            const option = document.createElement('option');
-            option.value = year;
-            option.textContent = year;
-            yearSelect.appendChild(option);
-        });
-    }
+        function getUniqueYears() {
+            const years = new Set();
+            allPrestasiData.forEach(item => {
+                const year = new Date(item.date).getFullYear();
+                years.add(year);
+            });
+            return Array.from(years).sort((a, b) => b - a);
+        }
 
-    // Fungsi untuk menampilkan prestasi ke DOM
-    function renderPrestasi(filterYear = 'all', limit = null) {
-        prestasiContainer.innerHTML = ''; // Bersihkan kontainer
-        let filteredPrestasi = allPrestasiData;
-
-        if (filterYear !== 'all') {
-            filteredPrestasi = allPrestasiData.filter(item => {
-                return new Date(item.date).getFullYear().toString() === filterYear;
+        function populateYearSelect() {
+            const years = getUniqueYears();
+            yearSelect.innerHTML = '<option value="all">Semua Tahun</option>';
+            years.forEach(year => {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                yearSelect.appendChild(option);
             });
         }
 
-        // Urutkan berdasarkan tanggal terbaru terlebih dahulu
-        filteredPrestasi.sort((a, b) => new Date(b.date) - new Date(a.date));
+        function renderPrestasi(filterYear = 'all', limit = null) {
+            prestasiContainer.innerHTML = '';
+            let filteredPrestasi = allPrestasiData;
 
-        const prestasiToDisplay = limit ? filteredPrestasi.slice(0, limit) : filteredPrestasi;
-        displayedPrestasiCount = prestasiToDisplay.length;
+            if (filterYear !== 'all') {
+                filteredPrestasi = allPrestasiData.filter(item => {
+                    return new Date(item.date).getFullYear().toString() === filterYear;
+                });
+            }
 
-        if (prestasiToDisplay.length === 0) {
-            prestasiContainer.innerHTML = '<p class="text-center" style="grid-column: 1 / -1; color: var(--text-lighter);">Belum ada prestasi untuk tahun ini.</p>';
-        } else {
-            prestasiToDisplay.forEach(prestasi => {
-                const card = document.createElement('div');
-                card.classList.add('achievement-card');
-                card.setAttribute('data-id', prestasi.id); // Untuk memudahkan pengambilan data saat modal
+            filteredPrestasi.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-                card.innerHTML = `
-                    <i class="${prestasi.icon} achievement-icon"></i>
-                    <h3 class="achievement-title">${prestasi.title}</h3>
-                    <p class="achievement-student">${prestasi.student}</p>
-                    <p class="achievement-date">${new Date(prestasi.date).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-                `;
-                prestasiContainer.appendChild(card);
-            });
-        }
+            const prestasiToDisplay = limit ? filteredPrestasi.slice(0, limit) : filteredPrestasi;
+            displayedPrestasiCount = prestasiToDisplay.length;
 
-        // Tampilkan/sembunyikan tombol "Lihat Semua Prestasi"
-        if (limit && filteredPrestasi.length > limit) {
-            viewAllPrestasiBtn.style.display = 'inline-block';
-            viewAllPrestasiBtn.textContent = `Lihat ${filteredPrestasi.length - limit} Prestasi Lainnya`;
-        } else {
-            viewAllPrestasiBtn.style.display = 'none';
-        }
-    }
+            if (prestasiToDisplay.length === 0) {
+                prestasiContainer.innerHTML = '<p class="text-center" style="grid-column: 1 / -1; color: var(--text-lighter);">Belum ada prestasi untuk tahun ini.</p>';
+            } else {
+                prestasiToDisplay.forEach(prestasi => {
+                    const card = document.createElement('div');
+                    card.classList.add('achievement-card');
+                    card.setAttribute('data-id', prestasi.id);
 
-    // Event Listener untuk filter tahun
-    yearSelect.addEventListener('change', function() {
-        const selectedYear = this.value;
-        renderPrestasi(selectedYear, initialPrestasiDisplayLimit);
-        // Pastikan tombol reset ke "Lihat Semua Prestasi" setelah filter berubah
-        viewAllPrestasiBtn.textContent = `Lihat Semua Prestasi`; // Reset teks
-    });
+                    card.innerHTML = `
+                        <i class="${prestasi.icon} achievement-icon"></i>
+                        <h3 class="achievement-title">${prestasi.title}</h3>
+                        <p class="achievement-student">${prestasi.student}</p>
+                        <p class="achievement-date">${new Date(prestasi.date).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                    `;
+                    prestasiContainer.appendChild(card);
+                });
+            }
 
-    // Event Listener untuk tombol "Lihat Semua Prestasi"
-    viewAllPrestasiBtn.addEventListener('click', function() {
-        const selectedYear = yearSelect.value;
-        renderPrestasi(selectedYear); // Tampilkan semua tanpa limit
-        this.style.display = 'none'; // Sembunyikan tombol setelah semua ditampilkan
-    });
-
-    // Event Listener untuk membuka modal saat kartu prestasi diklik
-    prestasiContainer.addEventListener('click', function(e) {
-        const card = e.target.closest('.achievement-card');
-        if (card) {
-            const prestasiId = card.getAttribute('data-id');
-            const selectedPrestasi = allPrestasiData.find(p => p.id === prestasiId);
-
-            if (selectedPrestasi) {
-                document.getElementById('modal-title').textContent = selectedPrestasi.title;
-                document.getElementById('modal-student').textContent = selectedPrestasi.student;
-                document.getElementById('modal-date').textContent = new Date(selectedPrestasi.date).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' });
-                document.getElementById('modal-description').textContent = selectedPrestasi.description;
-
-                modalOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Mencegah scroll body
+            if (limit && filteredPrestasi.length > limit) {
+                viewAllPrestasiBtn.style.display = 'inline-block';
+                viewAllPrestasiBtn.textContent = `Lihat ${filteredPrestasi.length - limit} Prestasi Lainnya`;
+            } else {
+                viewAllPrestasiBtn.style.display = 'none';
             }
         }
-    });
 
-    // Event Listener untuk menutup modal
-    modalCloseBtn.addEventListener('click', closeModal);
-    modalOverlay.addEventListener('click', function(e) {
-        // Tutup modal jika klik di area overlay, bukan di dalam konten modal
-        if (e.target === modalOverlay) {
-            closeModal();
+        yearSelect.addEventListener('change', function() {
+            const selectedYear = this.value;
+            renderPrestasi(selectedYear, initialPrestasiDisplayLimit);
+            viewAllPrestasiBtn.textContent = `Lihat Semua Prestasi`;
+        });
+
+        viewAllPrestasiBtn.addEventListener('click', function() {
+            const selectedYear = yearSelect.value;
+            renderPrestasi(selectedYear);
+            this.style.display = 'none';
+        });
+
+        prestasiContainer.addEventListener('click', function(e) {
+            const card = e.target.closest('.achievement-card');
+            if (card) {
+                const prestasiId = card.getAttribute('data-id');
+                const selectedPrestasi = allPrestasiData.find(p => p.id === prestasiId);
+
+                if (selectedPrestasi) {
+                    document.getElementById('modal-title').textContent = selectedPrestasi.title;
+                    document.getElementById('modal-student').textContent = selectedPrestasi.student;
+                    document.getElementById('modal-date').textContent = new Date(selectedPrestasi.date).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' });
+                    document.getElementById('modal-description').textContent = selectedPrestasi.description;
+
+                    modalOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+        });
+
+        modalCloseBtn.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', function(e) {
+            if (e.target === modalOverlay) {
+                closeModal();
+            }
+        });
+
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = '';
         }
-    });
 
-    function closeModal() {
-        modalOverlay.classList.remove('active');
-        document.body.style.overflow = ''; // Mengembalikan scroll body
-    }
-
-    // Inisialisasi Prestasi saat halaman dimuat
-    populateYearSelect();
-    renderPrestasi('all', initialPrestasiDisplayLimit);
-
+        // Inisialisasi Prestasi saat halaman dimuat
+        populateYearSelect();
+        renderPrestasi('all', initialPrestasiDisplayLimit);
+    } // Akhir dari if (prestasiContainer ...)
 
     // --- Inisialisasi Lightbox untuk Galeri Foto ---
     // Pastikan skrip lightbox sudah dimuat sebelum menginisialisasi
-    // Hanya berlaku untuk .gallery-grid img
     const galleryImages = document.querySelectorAll('.gallery-grid img');
     galleryImages.forEach((img, index) => {
-        // Asumsi gambar galeri memiliki path unik atau bisa diatur di sini
         img.setAttribute('data-lightbox', 'gallery-set');
-        img.setAttribute('data-title', `Galeri Gambar ${index + 1}`); // Contoh caption
+        img.setAttribute('data-title', `Galeri Gambar ${index + 1}`);
     });
 
     if (typeof lightbox !== 'undefined') {
