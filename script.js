@@ -1,394 +1,368 @@
-// script.js
-
 document.addEventListener('DOMContentLoaded', function() {
+    // Universal functions (Header, Slider, etc.)
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
 
-    // --- Data Prestasi (CONTOH) ---
-    // Ganti ini dengan data prestasi Anda yang sebenarnya.
-    // Jika Anda akan memuat data dari API, hapus array ini dan sesuaikan fungsi fetchPrestasiData.
-    const allPrestasiData = [
-        {
-            id: 'prestasi1',
-            icon: 'fas fa-trophy', // Contoh ikon Font Awesome
-            title: 'Juara 1 Lomba Sains Tingkat Kabupaten',
-            student: 'Budi Santoso (XII IPA)',
-            date: '2024-10-26', // Format YYYY-MM-DD agar mudah difilter
-            description: 'Budi Santoso berhasil meraih juara pertama dalam Lomba Sains tingkat Kabupaten Pontianak. Prestasi ini diraih berkat dedikasi dan bimbingan guru fisika, Ibu Fatimah. Lomba ini menguji kemampuan siswa dalam berpikir kritis dan memecahkan masalah sains. Budi menunjukkan keunggulan dalam setiap tahapan seleksi.'
-        },
-        {
-            id: 'prestasi2',
-            icon: 'fas fa-award',
-            title: 'Medali Emas Olimpiade Matematika Provinsi',
-            student: 'Siti Aminah (XI MIPA)',
-            date: '2024-09-15',
-            description: 'Siti Aminah berhasil menyumbangkan medali emas dalam Olimpiade Matematika tingkat Provinsi Kalimantan Barat. Kemenangan ini merupakan hasil dari latihan intensif selama berbulan-bulan dan dukungan penuh dari tim pembimbing matematika sekolah. Siti diharapkan dapat melaju ke tingkat nasional.'
-        },
-        {
-            id: 'prestasi3',
-            icon: 'fas fa-medal',
-            title: 'Juara 2 Lomba Pidato Bahasa Inggris',
-            student: 'Rina Dewi (X Bahasa)',
-            date: '2024-08-01',
-            description: 'Rina Dewi menunjukkan bakat luar biasa dalam berbahasa Inggris dengan meraih juara kedua dalam Lomba Pidato Bahasa Inggris se-Kota Pontianak. Penampilannya yang memukau dengan penguasaan tata bahasa dan intonasi yang baik membuatnya unggul di antara peserta lainnya.'
-        },
-        {
-            id: 'prestasi4',
-            icon: 'fas fa-football-ball',
-            title: 'Juara 1 Turnamen Futsal Antar Sekolah',
-            student: 'Tim Futsal Putra (XI & XII)',
-            date: '2024-07-20',
-            description: 'Tim Futsal Putra sekolah berhasil merebut gelar juara pertama dalam Turnamen Futsal Antar Sekolah. Kerja sama tim yang solid dan strategi yang matang menjadi kunci keberhasilan mereka. Kemenangan ini disambut meriah oleh seluruh warga sekolah.'
-        },
-        {
-            id: 'prestasi5',
-            icon: 'fas fa-paint-brush',
-            title: 'Pameran Seni Rupa Tingkat Nasional',
-            student: 'Aditya Pratama (XII Seni Budaya)',
-            date: '2023-11-10',
-            description: 'Karya seni rupa Aditya Pratama terpilih untuk dipamerkan dalam Pameran Seni Rupa Remaja Tingkat Nasional. Lukisan abstraknya yang berjudul "Harmoni Alam" mendapat banyak pujian dari kritikus seni dan pengunjung pameran.'
-        },
-        {
-            id: 'prestasi6',
-            icon: 'fas fa-book-reader',
-            title: 'Juara 3 Lomba Debat Sejarah',
-            student: 'Kelompok Debat Sejarah (X & XI)',
-            date: '2023-09-22',
-            description: 'Kelompok Debat Sejarah sekolah meraih juara ketiga dalam Lomba Debat Sejarah tingkat kota. Kemampuan mereka dalam menyajikan argumen, berpikir cepat, dan memahami materi sejarah dengan mendalam menjadi nilai plus.'
-        },
-        {
-            id: 'prestasi7',
-            icon: 'fas fa-microscope',
-            title: 'Penelitian Ilmiah Remaja Terbaik',
-            student: 'Tim Peneliti (XI MIPA)',
-            date: '2023-05-18',
-            description: 'Tim peneliti muda sekolah mendapatkan penghargaan sebagai "Penelitian Ilmiah Remaja Terbaik" untuk inovasi mereka dalam pengolahan limbah plastik menjadi bahan bakar alternatif. Proyek ini menunjukkan potensi besar dalam menciptakan solusi berkelanjutan.'
-        },
-        {
-            id: 'prestasi8',
-            icon: 'fas fa-music',
-            title: 'Juara 1 Festival Band Akustik',
-            student: 'Band "Harmoni Nada" (XII Seni Musik)',
-            date: '2023-04-05',
-            description: 'Band akustik sekolah, "Harmoni Nada", berhasil menjuarai Festival Band Akustik tingkat provinsi. Penampilan mereka yang energik dan harmonis dengan lagu-lagu ciptaan sendiri memukau para juri dan penonton.'
-        },
-        {
-            id: 'prestasi9',
-            icon: 'fas fa-swimmer',
-            title: 'Medali Perak Kejuaraan Renang Kota',
-            student: 'Maya Sari (X Olahraga)',
-            date: '2022-12-01',
-            description: 'Maya Sari mempersembahkan medali perak dalam Kejuaraan Renang Kota untuk gaya bebas 100 meter. Dedikasinya dalam berlatih dan semangat juangnya di lintasan sangat patut diacungi jempol.'
-        },
-        {
-            id: 'prestasi10',
-            icon: 'fas fa-chess',
-            title: 'Juara 1 Turnamen Catur Antar Pelajar',
-            student: 'Fahmi Rahman (XI IPA)',
-            date: '2022-10-10',
-            description: 'Fahmi Rahman menunjukkan kepiawaiannya dalam strategi catur dengan meraih juara pertama dalam Turnamen Catur Antar Pelajar se-Kabupaten. Kecerdasan dan ketenangannya di meja catur menjadi faktor penentu.'
-        }
-    ];
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('change', function() {
+            if (this.checked) {
+                navLinks.classList.add('active');
+            } else {
+                navLinks.classList.remove('active');
+            }
+        });
 
-    // --- Slider Hero ---
-    const sliderItems = document.querySelectorAll('.slider-item');
-    const sliderDotsContainer = document.querySelector('.slider-dots');
+        // Close mobile menu when a link is clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) { // Adjust breakpoint if necessary
+                    menuToggle.checked = false;
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+    }
+
+    // Hero Slider
+    const sliderItems = document.querySelectorAll('.hero-slider .slider-item');
+    const sliderDotsContainer = document.querySelector('.hero-slider .slider-dots');
     let currentSlide = 0;
-    let autoSlideInterval; // Untuk mengontrol interval
+    let slideInterval;
 
-    function createDots() {
-        if (!sliderDotsContainer) return; // Pastikan elemen ada
-        sliderDotsContainer.innerHTML = '';
+    if (sliderItems.length > 0) {
+        // Create dots
         sliderItems.forEach((_, index) => {
             const dot = document.createElement('span');
             dot.classList.add('slider-dot');
             if (index === 0) dot.classList.add('active');
             dot.addEventListener('click', () => {
                 goToSlide(index);
-                resetAutoSlide();
+                resetSlideInterval();
             });
             sliderDotsContainer.appendChild(dot);
         });
-    }
 
-    function goToSlide(index) {
-        sliderItems.forEach(item => item.classList.remove('active'));
-        const dots = document.querySelectorAll('.slider-dot');
-        if (dots.length > 0) { // Pastikan dots ada sebelum mencoba mengaksesnya
-            dots.forEach(dot => dot.classList.remove('active'));
-            dots[index].classList.add('active');
+        const sliderDots = document.querySelectorAll('.slider-dot');
+
+        function showSlide(index) {
+            sliderItems.forEach((item, i) => {
+                item.classList.remove('active');
+                if (i === index) {
+                    item.classList.add('active');
+                }
+            });
+            sliderDots.forEach((dot, i) => {
+                dot.classList.remove('active');
+                if (i === index) {
+                    dot.classList.add('active');
+                }
+            });
         }
-        sliderItems[index].classList.add('active');
-        currentSlide = index;
-    }
 
-    function startAutoSlide() {
-        autoSlideInterval = setInterval(() => {
+        function nextSlide() {
             currentSlide = (currentSlide + 1) % sliderItems.length;
-            goToSlide(currentSlide);
-        }, 5000);
-    }
-
-    function resetAutoSlide() {
-        clearInterval(autoSlideInterval);
-        startAutoSlide();
-    }
-
-    // Inisialisasi slider hanya jika ada slider items
-    if (sliderItems.length > 0) {
-        createDots();
-        goToSlide(0);
-        startAutoSlide();
-    }
-
-    // --- Dropdown Menu (untuk desktop dan mobile) ---
-    const dropdowns = document.querySelectorAll('.dropdown');
-
-    dropdowns.forEach(dropdown => {
-        const dropdownLink = dropdown.querySelector('a');
-        dropdownLink.addEventListener('click', function(e) {
-            // Cek jika ini adalah link dropdown dengan href '#' atau kosong (untuk toggle di mobile)
-            const isDropdownParentLink = this.getAttribute('href') === '#' || this.getAttribute('href') === null || this.getAttribute('href') === '';
-
-            if (window.innerWidth <= 991) { // Sesuaikan dengan breakpoint menu hamburger Anda
-                if (isDropdownParentLink) { // Hanya preventDefault jika itu link dropdown parent
-                    e.preventDefault();
-                }
-                dropdown.classList.toggle('active');
-
-                dropdowns.forEach(otherDropdown => {
-                    if (otherDropdown !== dropdown && otherDropdown.classList.contains('active')) {
-                        otherDropdown.classList.remove('active');
-                    }
-                });
-            }
-        });
-    });
-
-    // --- Hamburger Menu ---
-    const menuToggle = document.getElementById('menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-
-    if (menuToggle && navLinks) { // Pastikan elemen ada
-        menuToggle.addEventListener('change', function() {
-            if (this.checked) {
-                navLinks.classList.add('menu-open');
-                dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
-            } else {
-                navLinks.classList.remove('menu-open');
-                dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
-            }
-        });
-
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', function() {
-                if (window.innerWidth <= 991) {
-                    const parentLi = this.closest('li');
-                    const isDropdownParent = parentLi && parentLi.classList.contains('dropdown');
-                    const isPpdbButton = this.classList.contains('btn-nav');
-
-                    // Tutup menu jika bukan parent dropdown, atau jika itu tombol PPDB
-                    // Atau jika link menunjuk ke sebuah id di halaman yang sama (smooth scroll)
-                    if (!isDropdownParent || isPpdbButton || this.getAttribute('href').startsWith('#')) {
-                        menuToggle.checked = false;
-                        navLinks.classList.remove('menu-open');
-                        dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
-                    }
-                }
-            });
-        });
-    }
-
-    // Tutup menu jika ukuran layar berubah dari mobile ke desktop
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 991) {
-            if (menuToggle && menuToggle.checked) {
-                menuToggle.checked = false;
-                navLinks.classList.remove('menu-open');
-            }
-            dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
-        }
-    });
-
-
-    // --- Smooth Scrolling ---
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const targetId = this.getAttribute('href');
-            // Hanya aktifkan smooth scroll jika berada di halaman yang sama
-            if (window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/') || window.location.pathname === '/') {
-                if (targetId === '#') return;
-                e.preventDefault(); // Cegah perilaku default hanya jika ini smooth scroll internal
-
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    const headerOffset = document.querySelector('.main-header').offsetHeight;
-                    const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                    const offsetPosition = elementPosition - headerOffset - 20;
-
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        });
-    });
-
-    // --- Ticker Pengumuman ---
-    const tickerItems = document.querySelectorAll('.ticker-item');
-    let currentTickerItem = 0;
-
-    function showNextTickerItem() {
-        if (tickerItems.length === 0) return;
-
-        const activeItem = document.querySelector('.ticker-item.active');
-        if (activeItem) {
-            activeItem.classList.remove('active');
+            showSlide(currentSlide);
         }
 
-        currentTickerItem = (currentTickerItem + 1) % tickerItems.length;
-        tickerItems[currentTickerItem].classList.add('active');
+        function goToSlide(index) {
+            currentSlide = index;
+            showSlide(currentSlide);
+        }
+
+        function startSlideShow() {
+            slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+        }
+
+        function resetSlideInterval() {
+            clearInterval(slideInterval);
+            startSlideShow();
+        }
+
+        showSlide(currentSlide);
+        startSlideShow();
     }
 
-    if (tickerItems.length > 0) {
-        tickerItems[0].classList.add('active');
-        setInterval(showNextTickerItem, 5000);
+    // Announcement Ticker
+    const tickerContent = document.querySelector('.announcement-ticker .ticker-content');
+    if (tickerContent) {
+        let tickerPosition = 0;
+        const tickerItems = tickerContent.querySelectorAll('.ticker-item');
+        const itemHeight = tickerItems.length > 0 ? tickerItems[0].offsetHeight + 10 : 0; // Item height + margin/padding
+        let totalItems = tickerItems.length;
+
+        if (totalItems > 1) {
+            setInterval(() => {
+                tickerPosition++;
+                tickerContent.style.transition = 'transform 0.5s ease-in-out';
+                tickerContent.style.transform = `translateY(-${tickerPosition * itemHeight}px)`;
+
+                // When the last item is reached, reset to the first with no transition
+                if (tickerPosition === totalItems) {
+                    setTimeout(() => {
+                        tickerContent.style.transition = 'none';
+                        tickerContent.style.transform = `translateY(0)`;
+                        tickerPosition = 0;
+                    }, 500); // Needs to match the transition duration
+                }
+            }, 3000); // Change announcement every 3 seconds
+        }
     }
 
-    // --- Prestasi Section (Dynamic Filtering & Modals) ---
-    // Kode ini diaktifkan kembali dan akan berjalan jika elemen-elemennya ada di halaman.
-    const prestasiContainer = document.getElementById('prestasi-gallery-container');
-    const yearSelect = document.getElementById('prestasi-year-select');
+
+    // --- Data untuk Prestasi dan Berita (dipindahkan ke sini) ---
+    const allPrestasiData = [
+        {
+            title: 'Juara 1 Lomba Sains Tingkat Provinsi',
+            student: 'Muhammad Fatih',
+            year: 2024,
+            date: '20 Mei 2024',
+            description: 'Siswa kami, Muhammad Fatih, berhasil meraih juara pertama dalam kompetisi sains tahunan tingkat provinsi, menunjukkan keunggulan dalam bidang Fisika. Prestasinya membawa kebanggaan bagi madrasah dan menjadi inspirasi bagi siswa lainnya. Persiapan yang matang dan bimbingan guru yang intensif menjadi kunci keberhasilannya.',
+            icon: 'fas fa-medal'
+        },
+        {
+            title: 'Tim Debat Raih Medali Emas Nasional',
+            student: 'Tim Debat MATQ (Ahmad, Sarah, Budi)',
+            year: 2024,
+            date: '15 April 2024',
+            description: 'Tim debat sekolah kami kembali mengharumkan nama sekolah dengan meraih medali emas di ajang debat tingkat nasional. Mereka menunjukkan kemampuan berpikir kritis, argumentasi yang kuat, dan kerjasama tim yang solid. Kemenangan ini adalah buah dari latihan rutin dan dedikasi.',
+            icon: 'fas fa-trophy'
+        },
+        {
+            title: 'Siswa Kami Dominasi Lomba Renang Regional',
+            student: 'Khalid dan Aisyah',
+            year: 2024,
+            date: '01 Maret 2024',
+            description: 'Tiga siswa berhasil menyabet berbagai medali emas dan perak dalam kejuaraan renang regional, membuktikan bakat olahraga mereka. Dedikasi mereka dalam berlatih dan semangat kompetisi patut diacungi jempol. Semoga prestasi ini terus memotivasi mereka untuk berprestasi di tingkat yang lebih tinggi.',
+            icon: 'fas fa-swimmer'
+        },
+        {
+            title: 'Juara Hafalan 30 Juz Tingkat Nasional',
+            student: 'Fatimah Az-Zahra',
+            year: 2023,
+            date: '10 November 2023',
+            description: 'Fatimah Az-Zahra berhasil meraih gelar juara pertama dalam Musabaqah Hifzil Quran (MHQ) 30 juz tingkat nasional. Prestasinya ini menunjukkan komitmen dan kesungguhan dalam menghafal dan memahami Al-Quran.',
+            icon: 'fas fa-quran'
+        },
+        {
+            title: 'Lomba Kaligrafi Terbaik Se-Kabupaten',
+            student: 'Hasan Al-Farabi',
+            year: 2023,
+            date: '25 September 2023',
+            description: 'Karya kaligrafi Hasan Al-Farabi memukau juri dan berhasil meraih posisi pertama dalam lomba kaligrafi antar madrasah se-kabupaten. Keindahan tulisan dan pesan yang disampaikan dalam karyanya menjadi daya tarik utama.',
+            icon: 'fas fa-paint-brush'
+        },
+        {
+            title: 'Finalis Olimpiade Matematika Nasional',
+            student: 'Siti Aminah',
+            year: 2023,
+            date: '12 Agustus 2023',
+            description: 'Siti Aminah berhasil melaju hingga babak final dalam Olimpiade Matematika tingkat nasional, bersaing dengan siswa-siswa terbaik dari seluruh Indonesia. Prestasinya ini membuktikan bahwa siswa madrasah juga unggul dalam bidang ilmu umum.',
+            icon: 'fas fa-calculator'
+        },
+        {
+            title: 'Juara Umum Pidato Bahasa Arab Se-Provinsi',
+            student: 'Maryam Aliyah',
+            year: 2022,
+            date: '05 Juli 2022',
+            description: 'Maryam Aliyah menunjukkan kefasihan dan keberaniannya dalam berpidato bahasa Arab, meraih juara umum di kompetisi tingkat provinsi. Kemampuannya ini mencerminkan kuatnya program bahasa di madrasah.',
+            icon: 'fas fa-microphone'
+        },
+        {
+            title: 'Tim Basket Putra Raih Juara 2 Tingkat Kota',
+            student: 'Tim Basket MATQ Putra',
+            year: 2022,
+            date: '18 Juni 2022',
+            description: 'Tim basket putra madrasah berhasil meraih juara kedua dalam turnamen basket antar sekolah tingkat kota. Kerja keras dan semangat tim yang tinggi membuahkan hasil yang membanggakan.',
+            icon: 'fas fa-basketball-ball'
+        }
+        // Tambahkan data prestasi lainnya di sini
+    ];
+
+    const allNewsData = [
+        {
+            title: 'Penerimaan Santri Baru TA 2025/2026 Dimulai!',
+            date: '3 Juli 2025',
+            category: 'PPDB',
+            description: 'Pendaftaran Peserta Didik Baru (PPDB) Madrasah Aliyah Tahfizul Quran untuk Tahun Ajaran 2025/2026 Gelombang 1 telah resmi dibuka. Jangan lewatkan kesempatan emas untuk bergabung dengan keluarga besar MATQ dan meraih pendidikan berkualitas yang memadukan ilmu agama dan umum. Informasi lengkap mengenai jadwal, syarat, dan prosedur pendaftaran dapat diakses di halaman PPDB kami.',
+            image: 'https://raw.githubusercontent.com/ridhopryg/Madrasah-aliyah1/main/images/Berita%20PPDB.jpeg'
+        },
+        {
+            title: 'Wisuda Tahfiz Angkatan Ke-5 Berlangsung Sukses',
+            date: '20 Juni 2025',
+            category: 'Acara',
+            description: 'Alhamdulillah, acara Wisuda Tahfiz Angkatan Ke-5 Madrasah Aliyah Tahfizul Quran telah berlangsung sukses dan khidmat. Sebanyak 50 santri telah diwisuda sebagai penghafal 30 juz Al-Quran, menandai selesainya perjalanan mulia mereka dalam menghafal Kitabullah. Acara ini dihadiri oleh orang tua, guru, dan tokoh masyarakat, menjadi momen haru dan penuh kebanggaan.',
+            image: 'https://via.placeholder.com/300x180/5c7a9b/ffffff?text=Berita+Wisuda'
+        },
+        {
+            title: 'Workshop Tahsin & Tajwid untuk Asatidz',
+            date: '15 Mei 2025',
+            category: 'Pelatihan',
+            description: 'Madrasah Aliyah Tahfizul Quran secara rutin mengadakan workshop untuk meningkatkan kompetensi guru (asatidz) dalam bidang tahsin dan tajwid Al-Quran. Workshop ini bertujuan untuk memastikan kualitas pengajaran tahfiz yang optimal dan sesuai dengan kaidah tajwid yang benar, demi melahirkan generasi penghafal Al-Quran yang mutqin.',
+            image: 'https://via.placeholder.com/300x180/6a8eaf/ffffff?text=Berita+Workshop'
+        },
+        {
+            title: 'Khotmil Quran Akbar Menjelang Ramadhan',
+            date: '10 Maret 2025',
+            category: 'Acara',
+            description: 'Menyambut bulan suci Ramadhan, seluruh santri dan asatidz Madrasah Aliyah Tahfizul Quran menggelar acara Khotmil Quran Akbar. Kegiatan ini merupakan wujud syukur dan upaya mempererat hubungan dengan Al-Quran sebelum memasuki bulan penuh berkah.',
+            image: 'https://via.placeholder.com/300x180/7b9bc0/ffffff?text=Berita+Khotmil'
+        },
+        {
+            title: 'Kunjungan Studi ke Pusat Tahfiz Nasional',
+            date: '20 Februari 2025',
+            category: 'Edukasi',
+            description: 'Siswa-siswi pilihan berkesempatan melakukan kunjungan studi ke salah satu pusat tahfiz terkemuka di tingkat nasional. Kunjungan ini diharapkan dapat memberikan inspirasi dan motivasi bagi para santri dalam menghafal Al-Quran serta menambah wawasan tentang metode tahfiz modern.',
+            image: 'https://via.placeholder.com/300x180/8da7c4/ffffff?text=Berita+Kunjungan'
+        }
+        // Tambahkan data berita lainnya di sini
+    ];
+
+    // --- Highlighting Prestasi dan Berita di Index.html ---
+    const prestasiHighlightContainer = document.getElementById('prestasi-highlight-container');
+    const newsHighlightContainer = document.getElementById('news-highlight-container');
+
+    if (prestasiHighlightContainer) {
+        // Tampilkan 3 prestasi terbaru
+        const latestPrestasi = allPrestasiData.slice(0, 3);
+        latestPrestasi.forEach(prestasi => {
+            const card = document.createElement('article');
+            card.classList.add('news-item'); // Reuse news-item class for styling
+            card.innerHTML = `
+                <h3>${prestasi.title}</h3>
+                <p class="date"><i class="far fa-calendar-alt"></i> ${prestasi.date} | <i class="fas fa-user-graduate"></i> ${prestasi.student}</p>
+                <p>${prestasi.description.substring(0, 100)}...</p>
+                <a href="#" class="read-more show-prestasi-modal"
+                   data-title="${prestasi.title}"
+                   data-student="${prestasi.student}"
+                   data-date="${prestasi.date}"
+                   data-description="${prestasi.description}">Baca Selengkapnya <i class="fas fa-angle-right"></i></a>
+            `;
+            prestasiHighlightContainer.appendChild(card);
+        });
+    }
+
+    if (newsHighlightContainer) {
+        // Tampilkan 3 berita terbaru
+        const latestNews = allNewsData.slice(0, 3);
+        latestNews.forEach(news => {
+            const article = document.createElement('article');
+            article.classList.add('news-item');
+            article.innerHTML = `
+                <img src="${news.image}" alt="${news.title}">
+                <h3>${news.title}</h3>
+                <p class="date"><i class="far fa-calendar-alt"></i> ${news.date} | <i class="fas fa-tags"></i> ${news.category}</p>
+                <p>${news.description.substring(0, 100)}...</p>
+                <a href="#" class="read-more">Baca Selengkapnya <i class="fas fa-angle-right"></i></a>
+            `;
+            newsHighlightContainer.appendChild(article);
+        });
+    }
+
+    // --- Dynamic Prestasi Section (if added to index.html) ---
+    const prestasiGalleryContainer = document.getElementById('prestasi-gallery-container');
+    const prestasiYearSelect = document.getElementById('prestasi-year-select');
     const viewAllPrestasiBtn = document.getElementById('view-all-prestasi-btn');
-    const modalOverlay = document.getElementById('prestasi-modal-overlay');
+    const prestasiModalOverlay = document.getElementById('prestasi-modal-overlay');
     const modalCloseBtn = document.getElementById('modal-close-btn');
+    const modalTitle = document.getElementById('modal-title');
+    const modalStudent = document.getElementById('modal-student');
+    const modalDate = document.getElementById('modal-date');
+    const modalDescription = document.getElementById('modal-description');
 
-    // Hanya inisialisasi jika elemen-elemen yang diperlukan untuk prestasi ditemukan di halaman saat ini
-    if (prestasiContainer && yearSelect && viewAllPrestasiBtn && modalOverlay && modalCloseBtn) {
-        let displayedPrestasiCount = 0;
-        const initialPrestasiDisplayLimit = 6;
-
-        function getUniqueYears() {
-            const years = new Set();
-            allPrestasiData.forEach(item => {
-                const year = new Date(item.date).getFullYear();
-                years.add(year);
-            });
-            return Array.from(years).sort((a, b) => b - a);
-        }
+    // Only run this block if the elements exist (i.e., you've added the full prestasi section to index.html)
+    if (prestasiGalleryContainer && prestasiYearSelect) {
+        let displayedPrestasiCount = 6; // Jumlah prestasi yang ditampilkan pertama kali
+        const increment = 6; // Jumlah prestasi yang ditambahkan setiap kali klik "Lihat Lebih Banyak"
 
         function populateYearSelect() {
-            const years = getUniqueYears();
-            yearSelect.innerHTML = '<option value="all">Semua Tahun</option>';
+            const years = [...new Set(allPrestasiData.map(p => p.year))].sort((a, b) => b - a);
+            prestasiYearSelect.innerHTML = '<option value="all">Semua Tahun</option>';
             years.forEach(year => {
                 const option = document.createElement('option');
                 option.value = year;
                 option.textContent = year;
-                yearSelect.appendChild(option);
+                prestasiYearSelect.appendChild(option);
             });
         }
 
-        function renderPrestasi(filterYear = 'all', limit = null) {
-            prestasiContainer.innerHTML = '';
+        function renderPrestasi(prestasiToRender) {
+            prestasiGalleryContainer.innerHTML = ''; // Clear previous content
+            const currentYearFilter = prestasiYearSelect.value;
             let filteredPrestasi = allPrestasiData;
 
-            if (filterYear !== 'all') {
-                filteredPrestasi = allPrestasiData.filter(item => {
-                    return new Date(item.date).getFullYear().toString() === filterYear;
-                });
+            if (currentYearFilter !== 'all') {
+                filteredPrestasi = allPrestasiData.filter(p => p.year == currentYearFilter);
             }
 
-            filteredPrestasi.sort((a, b) => new Date(b.date) - new Date(a.date));
+            const limitedPrestasi = filteredPrestasi.slice(0, displayedPrestasiCount);
 
-            const prestasiToDisplay = limit ? filteredPrestasi.slice(0, limit) : filteredPrestasi;
-            displayedPrestasiCount = prestasiToDisplay.length;
+            limitedPrestasi.forEach(prestasi => {
+                const card = document.createElement('div');
+                card.classList.add('achievement-card');
+                card.innerHTML = `
+                    <i class="${prestasi.icon} achievement-icon"></i>
+                    <h3 class="achievement-title">${prestasi.title}</h3>
+                    <p class="achievement-student">Oleh: ${prestasi.student}</p>
+                    <p class="achievement-date">${prestasi.date}</p>
+                    <button class="btn primary-btn show-prestasi-modal"
+                            data-title="${prestasi.title}"
+                            data-student="${prestasi.student}"
+                            data-date="${prestasi.date}"
+                            data-description="${prestasi.description}">Detail</button>
+                `;
+                prestasiGalleryContainer.appendChild(card);
+            });
 
-            if (prestasiToDisplay.length === 0) {
-                prestasiContainer.innerHTML = '<p class="text-center" style="grid-column: 1 / -1; color: var(--text-lighter);">Belum ada prestasi untuk tahun ini.</p>';
+            // Show/hide "Lihat Semua" button
+            if (displayedPrestasiCount < filteredPrestasi.length) {
+                if (viewAllPrestasiBtn) viewAllPrestasiBtn.style.display = 'inline-block';
             } else {
-                prestasiToDisplay.forEach(prestasi => {
-                    const card = document.createElement('div');
-                    card.classList.add('achievement-card');
-                    card.setAttribute('data-id', prestasi.id);
-
-                    card.innerHTML = `
-                        <i class="${prestasi.icon} achievement-icon"></i>
-                        <h3 class="achievement-title">${prestasi.title}</h3>
-                        <p class="achievement-student">${prestasi.student}</p>
-                        <p class="achievement-date">${new Date(prestasi.date).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-                    `;
-                    prestasiContainer.appendChild(card);
-                });
-            }
-
-            if (limit && filteredPrestasi.length > limit) {
-                viewAllPrestasiBtn.style.display = 'inline-block';
-                viewAllPrestasiBtn.textContent = `Lihat ${filteredPrestasi.length - limit} Prestasi Lainnya`;
-            } else {
-                viewAllPrestasiBtn.style.display = 'none';
+                if (viewAllPrestasiBtn) viewAllPrestasiBtn.style.display = 'none';
             }
         }
 
-        yearSelect.addEventListener('change', function() {
-            const selectedYear = this.value;
-            renderPrestasi(selectedYear, initialPrestasiDisplayLimit);
-            viewAllPrestasiBtn.textContent = `Lihat Semua Prestasi`;
+        // Event Listeners
+        prestasiYearSelect.addEventListener('change', function() {
+            displayedPrestasiCount = 6; // Reset count on filter change
+            renderPrestasi(allPrestasiData);
         });
 
-        viewAllPrestasiBtn.addEventListener('click', function() {
-            const selectedYear = yearSelect.value;
-            renderPrestasi(selectedYear);
-            this.style.display = 'none';
+        if (viewAllPrestasiBtn) {
+            viewAllPrestasiBtn.addEventListener('click', function() {
+                displayedPrestasiCount += increment;
+                renderPrestasi(allPrestasiData);
+            });
+        }
+
+        // Modal Functionality
+        document.body.addEventListener('click', function(event) {
+            if (event.target.classList.contains('show-prestasi-modal')) {
+                event.preventDefault(); // Prevent default link behavior
+                const data = event.target.dataset;
+                modalTitle.textContent = data.title;
+                modalStudent.textContent = `Oleh: ${data.student}`;
+                modalDate.textContent = data.date;
+                modalDescription.textContent = data.description;
+                prestasiModalOverlay.classList.add('active');
+            }
         });
 
-        prestasiContainer.addEventListener('click', function(e) {
-            const card = e.target.closest('.achievement-card');
-            if (card) {
-                const prestasiId = card.getAttribute('data-id');
-                const selectedPrestasi = allPrestasiData.find(p => p.id === prestasiId);
+        if (modalCloseBtn) {
+            modalCloseBtn.addEventListener('click', function() {
+                prestasiModalOverlay.classList.remove('active');
+            });
+        }
 
-                if (selectedPrestasi) {
-                    document.getElementById('modal-title').textContent = selectedPrestasi.title;
-                    document.getElementById('modal-student').textContent = selectedPrestasi.student;
-                    document.getElementById('modal-date').textContent = new Date(selectedPrestasi.date).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' });
-                    document.getElementById('modal-description').textContent = selectedPrestasi.description;
-
-                    modalOverlay.classList.add('active');
-                    document.body.style.overflow = 'hidden';
+        if (prestasiModalOverlay) {
+            prestasiModalOverlay.addEventListener('click', function(event) {
+                if (event.target === prestasiModalOverlay) { // Close when clicking outside content
+                    prestasiModalOverlay.classList.remove('active');
                 }
-            }
-        });
-
-        modalCloseBtn.addEventListener('click', closeModal);
-        modalOverlay.addEventListener('click', function(e) {
-            if (e.target === modalOverlay) {
-                closeModal();
-            }
-        });
-
-        function closeModal() {
-            modalOverlay.classList.remove('active');
-            document.body.style.overflow = '';
+            });
         }
 
-        // Inisialisasi Prestasi saat halaman dimuat
+        // Initial render on page load
         populateYearSelect();
-        renderPrestasi('all', initialPrestasiDisplayLimit);
-    } // Akhir dari if (prestasiContainer ...)
-
-    // --- Inisialisasi Lightbox untuk Galeri Foto ---
-    // Pastikan skrip lightbox sudah dimuat sebelum menginisialisasi
-    const galleryImages = document.querySelectorAll('.gallery-grid img');
-    galleryImages.forEach((img, index) => {
-        img.setAttribute('data-lightbox', 'gallery-set');
-        img.setAttribute('data-title', `Galeri Gambar ${index + 1}`);
-    });
-
-    if (typeof lightbox !== 'undefined') {
-        lightbox.option({
-            'resizeDuration': 200,
-            'wrapAround': true,
-            'showImageNumberLabel': false
-        });
+        renderPrestasi(allPrestasiData);
     }
-
 });
