@@ -3,278 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prestasi - Madrasah Aliyah Tahfizul Quran</title>
+    <title>Madrasah Aliyah Tahfizul Quran - Beranda</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
-
-    <style>
-        /* CSS Tambahan untuk halaman prestasi agar terlihat bagus */
-        .page-hero {
-            background-size: cover;
-            background-position: center;
-            color: #fff;
-            text-align: center;
-            padding: 80px 20px;
-            position: relative;
-            z-index: 1;
-            margin-bottom: 50px;
-        }
-
-        .page-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.6); /* Overlay gelap */
-            z-index: -1;
-        }
-
-        .page-hero h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .page-hero p {
-            font-size: 1.2em;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-        }
-
-        /* The following styles related to achievements-section are no longer relevant for this file if the section is removed */
-        /*
-        .achievements-section {
-            padding: 50px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 2.5em;
-            color: #333;
-        }
-
-        .filter-controls {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .filter-controls label {
-            font-size: 1.1em;
-            margin-right: 10px;
-            color: #555;
-        }
-
-        .filter-controls select {
-            padding: 10px 15px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            font-size: 1em;
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            cursor: pointer;
-            outline: none;
-            transition: border-color 0.3s ease;
-        }
-
-        .filter-controls select:focus {
-            border-color: var(--primary-color);
-        }
-
-        .achievement-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            justify-content: center;
-            padding: 0 20px;
-        }
-
-        .achievement-card {
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-            padding: 30px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-        }
-
-        .achievement-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
-        }
-
-        .achievement-icon {
-            font-size: 3.5em;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .achievement-title {
-            font-size: 1.5em;
-            color: #333;
-            margin-bottom: 10px;
-            line-height: 1.3;
-            font-weight: 600;
-        }
-
-        .achievement-student,
-        .achievement-date {
-            font-size: 0.95em;
-            color: #666;
-            margin-bottom: 8px;
-        }
-
-        .achievement-date {
-            font-style: italic;
-            color: #888;
-        }
-
-        .btn.primary-btn {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: #fff;
-            padding: 12px 25px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: background-color 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1.1em;
-        }
-
-        .btn.primary-btn:hover {
-            background-color: var(--primary-color-dark);
-        }
-
-        .prestasi-modal-overlay {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.7);
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(5px);
-        }
-
-        .prestasi-modal-overlay.active {
-            display: flex;
-        }
-
-        .prestasi-modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 40px;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 600px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            position: relative;
-            transform: translateY(-50px);
-            opacity: 0;
-            animation: fadeInModal 0.3s forwards ease-out;
-        }
-
-        @keyframes fadeInModal {
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .modal-close-btn {
-            color: #aaa;
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            font-size: 35px;
-            font-weight: bold;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 0;
-        }
-
-        .modal-close-btn:hover,
-        .modal-close-btn:focus {
-            color: #333;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        #modal-title {
-            font-size: 2em;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        #modal-student,
-        #modal-date {
-            font-size: 1.1em;
-            color: #555;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        #modal-description {
-            font-size: 1em;
-            color: #444;
-            line-height: 1.6;
-            margin-top: 20px;
-            text-align: justify;
-        }
-
-        @media (max-width: 768px) {
-            .page-hero h1 {
-                font-size: 2.2em;
-            }
-            .page-hero p {
-                font-size: 1em;
-            }
-            .section-title {
-                font-size: 2em;
-            }
-            .filter-controls select {
-                width: 100%;
-                margin-top: 10px;
-            }
-            .achievement-card {
-                padding: 25px;
-            }
-            .achievement-icon {
-                font-size: 3em;
-            }
-            .achievement-title {
-                font-size: 1.3em;
-            }
-            .prestasi-modal-content {
-                padding: 30px;
-                width: 95%;
-            }
-            #modal-title {
-                font-size: 1.5em;
-            }
-            #modal-student, #modal-date, #modal-description {
-                font-size: 0.9em;
-            }
-        }
-        */
-    </style>
 </head>
 <body>
     <header class="main-header">
@@ -291,8 +24,8 @@
         </div>
         <div class="container header-main">
             <div class="logo">
-            <img src="https://raw.githubusercontent.com/ridhopryg/Madrasah-aliyah1/main/images/IMG_3344.jpeg" alt="Logo Madrasah Aliyah Tahfizul Quran">
-            <div class="logo-text">
+                <img src="https://raw.githubusercontent.com/ridhopryg/Madrasah-aliyah1/main/images/IMG_3344.jpeg" alt="Logo Madrasah Aliyah Tahfizul Quran">
+                <div class="logo-text">
                     <h1>Madrasah Aliyah Tahfizul Quran</h1>
                     <p>Mencetak Generasi Qur'ani Berprestasi</p>
                 </div>
@@ -319,20 +52,78 @@
                         </ul>
                     </li>
                     <li><a href="prestasi.html">Prestasi</a></li>
-                    <li><a href="galeri.html">Galeri</a></li> <li><a href="berita.html">Berita</a></li> <li><a href="kontak.html">Kontak</a></li> <li><a href="ppdb.html" class="btn-nav">PPDB</a></li> </ul>
+                    <li><a href="galeri.html">Galeri</a></li>
+                    <li><a href="berita.html">Berita</a></li>
+                    <li><a href="kontak.html">Kontak</a></li>
+                    <li><a href="ppdb.html" class="btn-nav">PPDB</a></li>
+                </ul>
             </nav>
         </div>
     </header>
 
     <main>
-        <section class="page-hero" style="background-image: url('https://raw.githubusercontent.com/ridhopryg/Madrasah-aliyah1/main/images/Gedung%20sekolah%201.jpeg');">
+        <section class="hero" style="background-image: url('https://raw.githubusercontent.com/ridhopryg/Madrasah-aliyah1/main/images/Gedung%20sekolah%201.jpeg');">
             <div class="container">
-                <h1>Prestasi Gemilang Siswa-Siswi Kami</h1>
-                <p>Jejak Keunggulan Madrasah Aliyah Tahfizul Quran</p>
+                <div class="hero-content">
+                    <h2>Mencetak Generasi Qur'ani Berprestasi</h2>
+                    <p>Pendidikan berkualitas untuk masa depan cerah.</p>
+                    <a href="ppdb.html" class="btn primary-btn">Daftar Sekarang</a>
+                </div>
             </div>
         </section>
 
-        </main>
+        <section class="highlights-section">
+            <div class="container">
+                <h2 class="section-title">Highlight Prestasi & Berita Terbaru</h2>
+                <div class="highlight-grid">
+                    <div class="highlight-card">
+                        <h3>Juara 1 Lomba Sains Tingkat Provinsi</h3>
+                        <p class="highlight-date">20 Mei 2024</p>
+                        <p>Siswa kami berhasil meraih juara pertama dalam kompetisi sains tahunan tingkat provinsi, menunjukkan keunggulan dalam bidang Fisika.</p>
+                        <a href="#" class="read-more">Baca Selengkapnya »</a>
+                    </div>
+                    <div class="highlight-card">
+                        <h3>Tim Debat Raih Medali Emas Nasional</h3>
+                        <p class="highlight-date">15 April 2024</p>
+                        <p>Tim debat sekolah kami kembali mengharumkan nama sekolah dengan meraih medali emas di ajang debat tingkat nasional.</p>
+                        <a href="#" class="read-more">Baca Selengkapnya »</a>
+                    </div>
+                    <div class="highlight-card">
+                        <h3>Siswa Kami Dominasi Lomba Renang Regional</h3>
+                        <p class="highlight-date">01 Maret 2024</p>
+                        <p>Tiga siswa berhasil menyabet berbagai medali emas dan perak dalam kejuaraan renang regional, membuktikan bakat olahraga mereka.</p>
+                        <a href="#" class="read-more">Baca Selengkapnya »</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="latest-news-announcements-section">
+            <div class="container">
+                <h2 class="section-title">Berita & Pengumuman Terbaru</h2>
+                <div class="news-grid">
+                    <div class="news-card">
+                        <img src="https://raw.githubusercontent.com/ridhopryg/Madrasah-aliyah1/main/images/Berita%20PPDB.jpeg" alt="Berita PPDB">
+                        <h3>Penerimaan Peserta Didik Baru (PPDB) 2025/2026 Telah Dibuka!</h3>
+                        <p class="news-date">20 Juni 2025</p>
+                        <p>Informasi lengkap mengenai jadwal, syarat, dan prosedur pendaftaran dapat diakses di halaman PPDB kami.</p>
+                        <a href="ppdb.html" class="read-more">Baca Selengkapnya »</a>
+                    </div>
+                    <div class="news-card">
+                        <img src="https://raw.githubusercontent.com/ridhopryg/Madrasah-aliyah1/main/images/Berita%20PPDB.jpeg" alt="Berita Lain">
+                        <h3>Workshop Tahfidz Quran untuk Guru</h3>
+                        <p class="news-date">15 Juni 2025</p>
+                        <p>Madrasah Aliyah Tahfizul Quran mengadakan workshop khusus untuk meningkatkan kompetensi guru dalam metode tahfidz.</p>
+                        <a href="#" class="read-more">Baca Selengkapnya »</a>
+                    </div>
+                    </div>
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="berita.html" class="btn primary-btn">Lihat Semua Berita</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
 
     <footer class="main-footer">
         <div class="container footer-grid">
