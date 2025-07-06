@@ -412,50 +412,56 @@ p {
     background-color: var(--denim-blue);
     color: var(--white);
     padding: 15px 0;
-    overflow: hidden;
+    overflow: hidden; /* Keep this to contain the scrolling text */
     box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .announcement-ticker {
     display: flex;
     align-items: center;
-    white-space: nowrap;
+    white-space: nowrap; /* Keep for the label, but .ticker-content will manage its items */
+    gap: 20px; /* Add some gap between label and content */
 }
 
 .ticker-label {
     font-weight: 600;
-    margin-right: 20px;
+    /* margin-right: 20px; */ /* Removed, using gap now */
     padding-right: 20px;
     border-right: 1px solid rgba(255, 255, 255, 0.3);
     font-size: 1.05em;
+    flex-shrink: 0; /* Prevents label from shrinking */
+}
+
+.ticker-label .fas {
+    margin-right: 8px; /* Added margin for icon */
+    color: var(--accent-gold); /* Ensure icon color is consistent */
 }
 
 .ticker-content {
-    position: relative;
-    min-height: 1.8em;
-    overflow: hidden;
-    flex-grow: 1;
-    height: 1.8em;
+    position: relative; /* Essential for positioning absolute children */
+    height: 1.8em; /* Ensure enough height for one line of text */
+    overflow: hidden; /* Hide anything outside this box */
+    flex-grow: 1; /* Allow content to take up available space */
 }
 
 .ticker-content .ticker-item {
-    display: none;
-    opacity: 0;
-    transition: opacity 0.4s;
-    position: absolute;
-    width: 100%;
-    left: 0;
+    position: absolute; /* Crucial for overlapping items */
     top: 0;
-    white-space: nowrap;
+    left: 0;
+    width: 100%;
+    white-space: nowrap; /* Keep text on one line */
+    opacity: 0; /* Hidden by default */
+    visibility: hidden; /* Also hide from screen readers/interaction */
+    transition: opacity 0.7s ease-in-out, visibility 0.7s ease-in-out; /* Smooth fade transition */
+    text-overflow: ellipsis; /* Add ellipsis for long text */
+    overflow: hidden; /* Hide overflowing text */
 }
 
 .ticker-content .ticker-item.active {
-    display: block;
-    opacity: 1;
-    position: relative;
-    animation: none;
+    opacity: 1; /* Fully visible when active */
+    visibility: visible; /* Make visible */
+    position: relative; /* Switch to relative to occupy space in the document flow once active */
 }
-
 /* ------------------------------------ */
 /* ABOUT US SECTION */
 /* ------------------------------------ */
