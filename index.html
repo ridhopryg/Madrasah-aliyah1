@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Madrasah Aliyah Tahfizul Quran - Beranda</title>
+    <title>Madrasah Aliyah Tahfizul Quran | Minimalis</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -24,7 +24,7 @@
         </div>
         <div class="container header-main">
             <div class="logo">
-                <img src="https://raw.githubusercontent.com/ridhopryg/Madrasah-aliyah1/main/images/IMG_3344.jpeg" alt="Logo Madrasah Aliyah Tahfizul Quran">
+                <img src="https://via.placeholder.com/80x80?text=Logo" alt="Logo MATQ">
                 <div class="logo-text">
                     <h1>Madrasah Aliyah Tahfizul Quran</h1>
                     <p>Mencetak Generasi Qur'ani Berprestasi</p>
@@ -34,9 +34,9 @@
                 <input type="checkbox" id="menu-toggle">
                 <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
                 <ul class="nav-links">
-                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="#hero">Beranda</a></li>
                     <li class="dropdown">
-                        <a href="#">Profil <i class="fas fa-caret-down"></i></a>
+                        <a href="#tentang-kami">Profil <i class="fas fa-caret-down"></i></a>
                         <ul class="dropdown-content">
                             <li><a href="#">Visi & Misi</a></li>
                             <li><a href="#">Sejarah</a></li>
@@ -44,85 +44,253 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#">Akademik <i class="fas fa-caret-down"></i></a>
+                        <a href="#program">Akademik <i class="fas fa-caret-down"></i></a>
                         <ul class="dropdown-content">
                             <li><a href="#">Kurikulum</a></li>
                             <li><a href="#">Program Tahfiz</a></li>
                             <li><a href="#">Ekstrakurikuler</a></li>
                         </ul>
                     </li>
-                    <li><a href="prestasi.html">Prestasi</a></li>
-                    <li><a href="galeri.html">Galeri</a></li>
-                    <li><a href="berita.html">Berita</a></li>
-                    <li><a href="kontak.html">Kontak</a></li>
-                    <li><a href="ppdb.html" class="btn-nav">PPDB</a></li>
+                    <li><a href="#fasilitas">Fasilitas</a></li>
+                    <li><a href="#galeri">Galeri</a></li>
+                    <li><a href="#berita">Berita</a></li>
+                    <li><a href="#kontak">Kontak</a></li>
+                    <li><a href="#ppdb" class="btn-nav">PPDB</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main>
-        <section class="hero" style="background-image: url('https://raw.githubusercontent.com/ridhopryg/Madrasah-aliyah1/main/images/Gedung%20sekolah%201.jpeg');">
+        <section id="hero" class="hero-slider">
+            <div class="slider-item active" style="background-image: url('https://via.placeholder.com/1500x600/6a8eaf/ffffff?text=Slider+1+-+Kegiatan+Belajar')">
+                <div class="container slider-content">
+                    <h2>Selamat Datang di Madrasah Aliyah Tahfizul Quran</h2>
+                    <p>Pendidikan unggul yang memadukan ilmu agama dan umum, dengan fokus pada hafalan Al-Quran.</p>
+                    <a href="#ppdb" class="btn hero-btn">Daftar Sekarang!</a>
+                </div>
+            </div>
+            <div class="slider-item" style="background-image: url('https://via.placeholder.com/1500x600/5c7a9b/ffffff?text=Slider+2+-+Wisuda+Tahfiz')">
+                <div class="container slider-content">
+                    <h2>Mencetak Hafiz dan Hafizah Berakhlak Mulia</h2>
+                    <p>Wujudkan impian menjadi penghafal Al-Quran yang berprestasi dan berwawasan luas.</p>
+                    <a href="#program" class="btn hero-btn">Lihat Program Kami</a>
+                </div>
+            </div>
+            <div class="slider-item" style="background-image: url('https://via.placeholder.com/1500x600/7b9bc0/ffffff?text=Slider+3+-+Suasana+Asrama')">
+                <div class="container slider-content">
+                    <h2>Lingkungan Belajar yang Kondusif dan Islami</h2>
+                    <p>Asrama nyaman dan fasilitas lengkap mendukung proses hafalan dan belajar.</p>
+                    <a href="#fasilitas" class="btn hero-btn">Eksplorasi Fasilitas</a>
+                </div>
+            </div>
+            <div class="slider-dots"></div>
+        </section>
+
+        <section id="announcements" class="announcements-section">
             <div class="container">
-                <div class="hero-content">
-                    <h2>Mencetak Generasi Qur'ani Berprestasi</h2>
-                    <p>Pendidikan berkualitas untuk masa depan cerah.</p>
-                    <a href="ppdb.html" class="btn primary-btn">Daftar Sekarang</a>
+                <div class="announcement-ticker">
+                    <span class="ticker-label"><i class="fas fa-bullhorn"></i> Pengumuman:</span>
+                    <div class="ticker-content">
+                        <div class="ticker-item">Pendaftaran PPDB Tahun Ajaran 2025/2026 Gelombang 1 telah dibuka! Batas akhir 31 Juli 2025.</div>
+                        <div class="ticker-item">Libur Hari Raya Idul Adha 1446 H pada tanggal 17-19 Juni 2025.</div>
+                        <div class="ticker-item">Kegiatan Khotmil Quran Akbar akan dilaksanakan pada tanggal 10 Agustus 2025.</div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="highlights-section">
+        <section id="tentang-kami" class="about-us section-spacing">
             <div class="container">
-                <h2 class="section-title">Highlight Prestasi & Berita Terbaru</h2>
-                <div class="highlight-grid">
-                    <div class="highlight-card">
-                        <h3>Juara 1 Lomba Sains Tingkat Provinsi</h3>
-                        <p class="highlight-date">20 Mei 2024</p>
-                        <p>Siswa kami berhasil meraih juara pertama dalam kompetisi sains tahunan tingkat provinsi, menunjukkan keunggulan dalam bidang Fisika.</p>
-                        <a href="#" class="read-more">Baca Selengkapnya »</a>
-                    </div>
-                    <div class="highlight-card">
-                        <h3>Tim Debat Raih Medali Emas Nasional</h3>
-                        <p class="highlight-date">15 April 2024</p>
-                        <p>Tim debat sekolah kami kembali mengharumkan nama sekolah dengan meraih medali emas di ajang debat tingkat nasional.</p>
-                        <a href="#" class="read-more">Baca Selengkapnya »</a>
-                    </div>
-                    <div class="highlight-card">
-                        <h3>Siswa Kami Dominasi Lomba Renang Regional</h3>
-                        <p class="highlight-date">01 Maret 2024</p>
-                        <p>Tiga siswa berhasil menyabet berbagai medali emas dan perak dalam kejuaraan renang regional, membuktikan bakat olahraga mereka.</p>
-                        <a href="#" class="read-more">Baca Selengkapnya »</a>
+                <h2>Tentang Madrasah Aliyah Tahfizul Quran</h2>
+                <div class="about-content">
+                    <img src="https://via.placeholder.com/400x250/8da7c4/ffffff?text=Tentang+Kami+MATQ" alt="Gedung Madrasah" class="about-image">
+                    <div class="about-text">
+                        <p>Madrasah Aliyah Tahfizul Quran berkomitmen untuk melahirkan generasi muda yang memiliki keunggulan akademik, hafalan Al-Quran yang mutqin, serta akhlak mulia. Kami menyediakan lingkungan belajar yang kondusif dengan pengajar-pengajar yang kompeten di bidangnya.</p>
+                        <p>Visi kami adalah menjadi lembaga pendidikan Islam terkemuka yang mencetak hafiz dan hafizah berprestasi, berwawasan luas, dan siap berkontribusi untuk umat. Bergabunglah dengan kami untuk meraih keberkahan ilmu dan Al-Quran.</p>
+                        <a href="#" class="btn read-more-btn">Selengkapnya <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="latest-news-announcements-section">
+        <section id="program" class="programs section-spacing bg-light">
             <div class="container">
-                <h2 class="section-title">Berita & Pengumuman Terbaru</h2>
+                <h2>Program Unggulan Kami</h2>
+                <div class="program-grid">
+                    <div class="program-item">
+                        <i class="fas fa-book-quran program-icon"></i>
+                        <h3>Tahfiz 30 Juz</h3>
+                        <p>Fokus utama kami adalah membimbing siswa untuk menghafal Al-Quran 30 Juz dengan metode yang efektif dan teruji.</p>
+                    </div>
+                    <div class="program-item">
+                        <i class="fas fa-graduation-cap program-icon"></i>
+                        <h3>Kurikulum Nasional Plus</h3>
+                        <p>Mengintegrasikan kurikulum Madrasah Aliyah dengan materi keislaman yang mendalam dan relevan.</p>
+                    </div>
+                    <div class="program-item">
+                        <i class="fas fa-mosque program-icon"></i>
+                        <h3>Dirasah Kutub Turats</h3>
+                        <p>Mempelajari dasar-dasar ilmu agama melalui kajian kitab-kitab klasik untuk pemahaman Islam yang komprehensif.</p>
+                    </div>
+                    <div class="program-item">
+                        <i class="fas fa-child program-icon"></i>
+                        <h3>Pengembangan Karakter</h3>
+                        <p>Pembinaan akhlak mulia, kepemimpinan, dan kemandirian melalui berbagai kegiatan ekstrakurikuler.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="fasilitas" class="facilities section-spacing">
+            <div class="container">
+                <h2>Fasilitas Pendukung Pendidikan</h2>
+                <div class="facility-grid">
+                    <div class="facility-item">
+                        <img src="https://via.placeholder.com/300x200/8da7c4/ffffff?text=Asrama+Putra/Putri" alt="Asrama Nyaman">
+                        <h3>Asrama Modern</h3>
+                        <p>Lingkungan tempat tinggal yang bersih, aman, dan kondusif untuk belajar dan beribadah.</p>
+                    </div>
+                    <div class="facility-item">
+                        <img src="https://via.placeholder.com/300x200/5c7a9b/ffffff?text=Masjid+Jami" alt="Masjid Besar">
+                        <h3>Masjid Jami'</h3>
+                        <p>Sarana ibadah representatif untuk sholat berjamaah, kajian, dan kegiatan keagamaan lainnya.</p>
+                    </div>
+                    <div class="facility-item">
+                        <img src="https://via.placeholder.com/300x200/6a8eaf/ffffff?text=Ruang+Kelas+Nyaman" alt="Ruang Belajar Modern">
+                        <h3>Ruang Kelas Interaktif</h3>
+                        <p>Kelas yang dilengkapi dengan fasilitas pendukung pembelajaran yang nyaman dan interaktif.</p>
+                    </div>
+                    <div class="facility-item">
+                        <img src="https://via.placeholder.com/300x200/7b9bc0/ffffff?text=Perpustakaan+Lengkap" alt="Perpustakaan Islam">
+                        <h3>Perpustakaan Digital & Konvensional</h3>
+                        <p>Koleksi buku-buku agama, umum, dan akses ke sumber digital untuk menunjang wawasan santri.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="berita" class="news-events section-spacing bg-light">
+            <div class="container">
+                <h2>Berita & Pengumuman Terbaru</h2>
                 <div class="news-grid">
-                    <div class="news-card">
-                        <img src="https://raw.githubusercontent.com/ridhopryg/Madrasah-aliyah1/main/images/Berita%20PPDB.jpeg" alt="Berita PPDB">
-                        <h3>Penerimaan Peserta Didik Baru (PPDB) 2025/2026 Telah Dibuka!</h3>
-                        <p class="news-date">20 Juni 2025</p>
-                        <p>Informasi lengkap mengenai jadwal, syarat, dan prosedur pendaftaran dapat diakses di halaman PPDB kami.</p>
-                        <a href="ppdb.html" class="read-more">Baca Selengkapnya »</a>
-                    </div>
-                    <div class="news-card">
-                        <img src="https://raw.githubusercontent.com/ridhopryg/Madrasah-aliyah1/main/images/Berita%20PPDB.jpeg" alt="Berita Lain">
-                        <h3>Workshop Tahfidz Quran untuk Guru</h3>
-                        <p class="news-date">15 Juni 2025</p>
-                        <p>Madrasah Aliyah Tahfizul Quran mengadakan workshop khusus untuk meningkatkan kompetensi guru dalam metode tahfidz.</p>
-                        <a href="#" class="read-more">Baca Selengkapnya »</a>
-                    </div>
-                    </div>
-                <div style="text-align: center; margin-top: 30px;">
-                    <a href="berita.html" class="btn primary-btn">Lihat Semua Berita</a>
+                    <article class="news-item">
+                        <img src="https://via.placeholder.com/300x180/8da7c4/ffffff?text=Berita+PPDB" alt="Berita PPDB">
+                        <h3>Penerimaan Santri Baru TA 2025/2026 Dimulai!</h3>
+                        <p class="date"><i class="far fa-calendar-alt"></i> 3 Juli 2025 | <i class="fas fa-tags"></i> PPDB</p>
+                        <p>Pendaftaran telah dibuka! Jangan lewatkan kesempatan menjadi bagian dari MATQ.</p>
+                        <a href="#" class="read-more">Baca Selengkapnya <i class="fas fa-angle-right"></i></a>
+                    </article>
+                    <article class="news-item">
+                        <img src="https://via.placeholder.com/300x180/5c7a9b/ffffff?text=Berita+Wisuda" alt="Berita Wisuda">
+                        <h3>Wisuda Tahfiz Angkatan Ke-5 Berlangsung Sukses</h3>
+                        <p class="date"><i class="far fa-calendar-alt"></i> 20 Juni 2025 | <i class="fas fa-tags"></i> Acara</p>
+                        <p>Alhamdulillah, sebanyak 50 santri telah diwisuda sebagai penghafal 30 juz Al-Quran.</p>
+                        <a href="#" class="read-more"><i class="fas fa-angle-right"></i></a>
+                    </article>
+                    <article class="news-item">
+                        <img src="https://via.placeholder.com/300x180/6a8eaf/ffffff?text=Berita+Workshop" alt="Berita Workshop">
+                        <h3>Workshop Tahsin & Tajwid untuk Asatidz</h3>
+                        <p class="date"><i class="far fa-calendar-alt"></i> 15 Mei 2025 | <i class="fas fa-tags"></i> Pelatihan</p>
+                        <p>Mengadakan workshop untuk meningkatkan kompetensi guru dalam bidang tahsin dan tajwid Al-Quran.</p>
+                        <a href="#" class="read-more"><i class="fas fa-angle-right"></i></a>
+                    </article>
+                </div>
+                <div class="text-center mt-40">
+                    <a href="#" class="btn view-all-btn"></a>
                 </div>
             </div>
         </section>
 
+        <section id="galeri" class="gallery-section section-spacing">
+            <div class="container">
+                <h2>Galeri Foto Kegiatan</h2>
+                <div class="gallery-grid">
+                    <a href="https://via.placeholder.com/800x600/8da7c4/ffffff?text=Galeri+1" data-lightbox="gallery" data-title="Kegiatan Mengaji"><img src="https://via.placeholder.com/300x200/8da7c4/ffffff?text=Galeri+1" alt="Galeri 1"></a>
+                    <a href="https://via.placeholder.com/800x600/5c7a9b/ffffff?text=Galeri+2" data-lightbox="gallery" data-title="Asrama Santri"><img src="https://via.placeholder.com/300x200/5c7a9b/ffffff?text=Galeri+2" alt="Galeri 2"></a>
+                    <a href="https://via.placeholder.com/800x600/6a8eaf/ffffff?text=Galeri+3" data-lightbox="gallery" data-title="Outing Class"><img src="https://via.placeholder.com/300x200/6a8eaf/ffffff?text=Galeri+3" alt="Galeri 3"></a>
+                    <a href="https://via.placeholder.com/800x600/7b9bc0/ffffff?text=Galeri+4" data-lightbox="gallery" data-title="Perpustakaan"><img src="https://via.placeholder.com/300x200/7b9bc0/ffffff?text=Galeri+4" alt="Galeri 4"></a>
+                    <a href="https://via.placeholder.com/800x600/8da7c4/ffffff?text=Galeri+5" data-lightbox="gallery" data-title="Upacara Bendera"><img src="https://via.placeholder.com/300x200/8da7c4/ffffff?text=Galeri+5" alt="Galeri 5"></a>
+                    <a href="https://via.placeholder.com/800x600/5c7a9b/ffffff?text=Galeri+6" data-lightbox="gallery" data-title="Ekstrakurikuler"><img src="https://via.placeholder.com/300x200/5c7a9b/ffffff?text=Galeri+6" alt="Galeri 6"></a>
+                </div>
+                <div class="text-center mt-40">
+                    <a href="#" class="btn view-all-btn">Lihat Semua Galeri</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="testimonials-section section-spacing bg-light">
+            <div class="container">
+                <h2>Apa Kata Mereka Tentang Kami?</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial-item">
+                        <p class="quote">"Alhamdulillah, putra kami menjadi lebih mandiri dan hafal Al-Quran sejak di MATQ. Lingkungan belajarnya sangat mendukung."</p>
+                        <p class="author">- Orang Tua Santri (Ibu Fatimah)</p>
+                    </div>
+                    <div class="testimonial-item">
+                        <p class="quote">"Guru-guru di sini sangat membimbing dengan sabar. Saya merasa nyaman belajar dan menghafal Al-Quran di MATQ."</p>
+                        <p class="author">- Ahmad (Santri Kelas XII)</p>
+                    </div>
+                    <div class="testimonial-item">
+                        <p class="quote">"Kurikulumnya terpadu antara ilmu agama dan umum, sehingga kami siap menghadapi tantangan masa depan."</p>
+                        <p class="author">- Siti (Alumni)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ppdb" class="ppdb-cta section-spacing">
+            <div class="container text-center">
+                <h2>Penerimaan Peserta Didik Baru (PPDB)</h2>
+                <p>Jadikan putra/putri Anda bagian dari Madrasah Aliyah Tahfizul Quran. Raih pendidikan berkualitas dan hafalan Al-Quran yang mutqin.</p>
+                <a href="#" class="btn ppdb-btn">Daftar Sekarang! <i class="fas fa-chevron-right"></i></a>
+                <p class="ppdb-deadline">Gelombang 1 ditutup 31 Juli 2025</p>
+            </div>
+        </section>
+
+        <section id="kontak" class="contact-section section-spacing">
+            <div class="container">
+                <h2>Hubungi Kami</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Informasi Kontak</h3>
+                        <p>Jika Anda memiliki pertanyaan lebih lanjut, jangan ragu untuk menghubungi kami:</p>
+                        <ul>
+                            <li><i class="fas fa-map-marker-alt"></i> Alamat: Jl. Pramuka Sungai Rengas Kec.Sungai Kakap Kab. Kubu raya</li>
+                            <li><i class="fas fa-phone"></i> Telepon: 0895704122351</li>
+                            <li><i class="fas fa-whatsapp"></i> 0895704122351</li>
+                            <li><i class="fas fa-envelope"></i> info@matq.sch.id</li>
+                            <li><i class="fas fa-globe"></i> www.matq.sch.id</li>
+                        </ul>
+                        <div class="map-container">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.816405626998!2d109.34091607421915!3d-0.03801049999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e1d5a7d7b6b1b79%3A0x1d5a1b3c9e6d0a7a!2sPontianak%20City!5e0!3m2!1sen!2sid!4v1719999999999!5m2!1sen!2sid" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <h3>Kirim Pesan Kepada Kami</h3>
+                        <form action="#" method="POST">
+                            <div class="form-group">
+                                <label for="nama">Nama Lengkap</label>
+                                <input type="text" id="nama" name="nama" placeholder="Nama Anda" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Anda</label>
+                                <input type="email" id="email" name="email" placeholder="Email aktif Anda" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subjek">Subjek</label>
+                                <input type="text" id="subjek" name="subjek" placeholder="Subjek Pesan" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="pesan">Pesan Anda</label>
+                                <textarea id="pesan" name="pesan" placeholder="Tulis pesan Anda di sini..." rows="6" required></textarea>
+                            </div>
+                            <button type="submit" class="btn submit-btn">Kirim Pesan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="main-footer">
@@ -139,12 +307,12 @@
             <div class="footer-col">
                 <h3>Link Cepat</h3>
                 <ul>
-                    <li><a href="index.html#tentang-kami">Tentang Kami</a></li>
-                    <li><a href="index.html#program">Program Unggulan</a></li>
-                    <li><a href="prestasi.html">Prestasi</a></li>
-                    <li><a href="berita.html">Berita & Acara</a></li>
-                    <li><a href="galeri.html">Galeri</a></li>
-                    <li><a href="kontak.html">Kontak</a></li>
+                    <li><a href="#tentang-kami">Tentang Kami</a></li>
+                    <li><a href="#program">Program Unggulan</a></li>
+                    <li><a href="#fasilitas">Fasilitas</a></li>
+                    <li><a href="#berita">Berita & Acara</a></li>
+                    <li><a href="#galeri">Galeri</a></li>
+                    <li><a href="#kontak">Kontak</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -157,11 +325,10 @@
             </div>
             <div class="footer-col contact-footer">
                 <h3>Hubungi Kami</h3>
-                <p><i class="fas fa-map-marker-alt"></i> Alamat: Jl. Pramuka Sungai Rengas Kec.Sungai Kakap Kab. Kubu raya </p>
+                <p><i class="fas fa-map-marker-alt"></i> Jl. Pramuka Sungai Rengas Kec.Sungai Kakap Kab. Kubu raya </p>
                 <p><i class="fas fa-phone"></i> 0895704122351</p>
                 <p><i class="fas fa-whatsapp"></i> 0895704122351</p>
                 <p><i class="fas fa-envelope"></i> info@matq.sch.id</p>
-                <p><i class="fas fa-globe"></i> www.matq.sch.id</p>
             </div>
         </div>
         <div class="footer-bottom">
@@ -171,7 +338,7 @@
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
     <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
 </body>
 </html>
