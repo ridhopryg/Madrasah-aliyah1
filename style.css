@@ -843,68 +843,94 @@ p {
     margin-top: 50px;
 }
 
-/* Styling untuk gambar di galeri */
-.gallery-grid img {
-    width: 100%;
-    height: 220px; /* Tinggi tetap untuk gambar */
-    object-fit: cover;
+/* Styling umum untuk setiap item di grid galeri, termasuk gambar dan embed Reels */
+.gallery-grid > a, /* untuk link gambar */
+.gallery-grid > div.gallery-item { /* untuk div pembungkus reels */
+    background-color: var(--white);
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    cursor: pointer;
+    overflow: hidden; /* Penting untuk menangani konten yang mungkin melebihi batas */
+    display: flex; /* Menggunakan flexbox untuk memusatkan konten di dalam kotak */
+    flex-direction: column;
+    justify-content: center; /* Pusatkan konten vertikal */
+    align-items: center; /* Pusatkan konten horizontal */
+    text-align: center; /* Untuk teks di dalam embed Instagram */
+    height: 220px; /* Tetapkan tinggi yang sama dengan gambar untuk konsistensi */
+    box-sizing: border-box; /* Pastikan padding tidak menambah ukuran total */
+    padding: 5px; /* Beri sedikit padding agar konten tidak menempel tepi */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Tambahkan transisi hover */
 }
 
-.gallery-grid img:hover {
+/* Hover effect yang sama untuk semua item galeri */
+.gallery-grid > a:hover,
+.gallery-grid > div.gallery-item:hover {
     transform: scale(1.02);
     opacity: 0.95;
 }
 
-/* --- Penyesuaian untuk Reels Instagram di Galeri --- */
 
-/* Wrapper untuk setiap item di grid galeri */
-.gallery-grid > div { /* Targetkan div langsung di dalam gallery-grid (termasuk .instagram-reel-embed) */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Pusatkan konten vertikal */
-    align-items: center; /* Pusatkan konten horizontal */
-    background-color: var(--white); /* Memberikan background putih seperti item lain */
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Shadow sama dengan gambar */
-    /* Tambahkan tinggi minimum agar konsisten jika Reels kecil */
-    min-height: 220px; /* Sesuaikan dengan tinggi gambar */
-    padding: 10px; /* Beri sedikit padding di dalam kotak item */
-    box-sizing: border-box; /* Pastikan padding tidak menambah ukuran total */
+/* Styling untuk gambar di galeri */
+.gallery-grid img {
+    width: 100%;
+    height: 100%; /* Pastikan gambar mengisi tinggi parent .gallery-item */
+    object-fit: cover;
+    border-radius: 8px; /* Pastikan border-radius pada gambar itu sendiri */
+    /* Box shadow dan transition sudah diatur di parent .gallery-grid > a */
+    cursor: pointer;
 }
 
-/* Styling spesifik untuk kontainer Reels Instagram */
+/* --- Penyesuaian untuk Reels Instagram di Galeri --- */
+
+/* Ini menargetkan div pembungkus reels Instagram */
 .instagram-reel-embed {
-    /* Flexbox dari parent .gallery-grid > div sudah cukup untuk centering */
-    /* Hapus width/height tetap jika ada di inline style, biarkan responsif */
     width: 100%; /* Pastikan wrapper Reels mengisi 100% lebar kolom */
-    max-width: 540px; /* Maksimum width embed Instagram */
-    /* Margin auto untuk memastikan reels selalu di tengah jika kontainer lebih lebar */
-    margin: auto; 
+    max-width: 540px; /* Batasi lebar maksimum sesuai rekomendasi Instagram */
+    height: 100%; /* Penting: Pastikan ini mengisi tinggi parent */
     display: flex; /* Untuk memusatkan blockquote di dalamnya */
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Penting untuk mencegah konten Reels melebihi */
+}
+
+/* Menimpa gaya inline dari Instagram agar Reels responsif dan mengisi kotak */
+.instagram-reel-embed .instagram-media {
+    width: 100% !important; /* Sangat penting: Timpa lebar bawaan Instagram */
+    max-width: 100% !important; /* Penting agar tidak melebihi parent .instagram-reel-embed */
+    min-width: unset !important; /* Hapus min-width bawaan yang bisa membuat scroll horizontal */
+    height: 100% !important; /* Sangat penting: Pastikan Reels mengisi tinggi parent */
+    margin: 0 !important; /* Hapus margin auto bawaan */
+    box-shadow: none !important; /* Opsional: Hapus shadow default Instagram */
+    border-radius: 0 !important; /* Opsional: Hapus border-radius default Instagram */
+    display: flex; /* Agar konten di dalamnya (link dan div) bisa diatur flexbox */
+    flex-direction: column;
+    justify-content: center; /* Pusatkan konten vertikal di dalam embed */
+    align-items: center; /* Pusatkan konten horizontal di dalam embed */
+}
+
+/* Menyesuaikan konten di dalam instagram-media agar tidak terlalu besar */
+.instagram-reel-embed .instagram-media > div:first-child { /* Ini adalah div padding di dalam blockquote */
+    padding: 0 !important; /* Hapus padding default Instagram di sini jika menyebabkan ruang kosong */
+    height: 100%; /* Biarkan div ini mengambil tinggi penuh */
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-/* Menimpa gaya inline dari Instagram agar Reels responsif */
-.instagram-reel-embed .instagram-media {
-    width: 100% !important; /* Timpa lebar bawaan Instagram */
-    max-width: 100% !important; /* Penting agar tidak melebihi kolom grid */
-    min-width: unset !important; /* Hapus min-width bawaan yang bisa membuat scroll horizontal */
-    height: auto !important; /* Biarkan tinggi menyesuaikan secara proporsional */
-    margin: 0 !important; /* Hapus margin auto bawaan agar flexbox parent yang mengatur */
-    box-shadow: none !important; /* Opsional: Hapus shadow default Instagram jika ingin pakai shadow parent */
-    border-radius: 0 !important; /* Opsional: Hapus border-radius default Instagram jika ingin pakai border-radius parent */
+.instagram-reel-embed .instagram-media > div:first-child > a {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Untuk iframe di dalam embed Instagram (pemutar sebenarnya) */
 .instagram-reel-embed .instagram-media iframe {
     width: 100% !important;
-    height: auto !important;
-    min-height: 200px; /* Beri tinggi minimum agar tidak terlalu kecil */
+    height: 100% !important; /* Coba ini untuk mengisi tinggi */
+    object-fit: cover; /* Mirip dengan gambar, coba untuk mengisi ruang */
+    min-height: 150px; /* Beri tinggi minimum agar tidak terlalu kecil */
 }
 
 /* Media Queries untuk Responsif */
@@ -924,8 +950,8 @@ p {
     .gallery-grid {
         grid-template-columns: 1fr;
     }
-    .gallery-grid > div,
-    .gallery-grid img {
+    .gallery-grid > a,
+    .gallery-grid > div.gallery-item {
         height: auto; /* Biarkan tinggi menyesuaikan konten di layar kecil */
         min-height: 200px; /* Minimal tinggi agar tidak terlalu gepeng */
     }
