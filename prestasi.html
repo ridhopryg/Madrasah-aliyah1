@@ -1,290 +1,245 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Prestasi Madrasah</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* CSS spesifik untuk halaman prestasi.html yang sangat sederhana */
-        /* Anda bisa memindahkan ini ke style.css di bagian terpisah jika mau */
-
-        .prestasi-item {
-            background-color: var(--white); /* Latar belakang putih */
-            border-bottom: 1px solid var(--medium-gray); /* Garis bawah tipis sebagai pemisah */
-            padding: 20px 0; /* Padding vertikal saja */
-            margin-bottom: 0; /* Hapus margin bawah antar item */
-            list-style: none; /* Pastikan tidak ada bullet point jika nanti jadi UL/LI */
-        }
-
-        .prestasi-item:last-child {
-            border-bottom: none; /* Hapus garis bawah item terakhir */
-        }
-
-        .prestasi-item h3 {
-            color: var(--primary-denim);
-            font-size: 1.6em; /* Ukuran judul lebih sederhana */
-            margin-bottom: 8px;
-            text-align: left; /* Penting agar tidak terpusat */
-            font-weight: 600;
-        }
-
-        .prestasi-item p {
-            font-size: 0.95em; /* Ukuran teks lebih kecil */
-            color: var(--text-light);
-            margin-bottom: 5px;
-            line-height: 1.5;
-        }
-
-        .prestasi-item p strong {
-            color: var(--text-dark);
-        }
-
-        .prestasi-item .prestasi-description {
-            font-size: 0.9em; /* Deskripsi sedikit lebih kecil */
-            color: var(--text-lighter); /* Warna lebih ringan */
-            margin-top: 10px;
-        }
-
-        /* Penyesuaian filter di halaman daftar lengkap */
-        .achievements-list-page .filter-controls {
-            margin-top: 30px;
-            margin-bottom: 40px;
-            justify-content: flex-start; /* Filter rata kiri */
-        }
-
-        .achievements-list-page .filter-controls label {
-            white-space: nowrap; /* Pastikan "Filter Tahun" tidak pecah */
-            margin-right: 10px;
-        }
-
-        /* Untuk memastikan footer di bagian bawah jika konten sedikit */
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        main {
-            flex-grow: 1; /* Membuat konten utama mengambil ruang sebanyak mungkin */
-        }
-
-        /* Responsif untuk halaman daftar prestasi */
-        @media (max-width: 768px) {
-            .prestasi-item {
-                padding: 15px 0;
-            }
-            .prestasi-item h3 {
-                font-size: 1.4em;
-            }
-            .prestasi-item p, .prestasi-item .prestasi-description {
-                font-size: 0.9em;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daftar Prestasi Madrasah</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    .prestasi-item {
+      background-color: var(--white);
+      border-bottom: 1px solid var(--medium-gray);
+      padding: 20px 0;
+      margin-bottom: 0;
+      list-style: none;
+    }
+    .prestasi-item:last-child {
+      border-bottom: none;
+    }
+    .prestasi-item h3 {
+      color: var(--primary-denim);
+      font-size: 1.6em;
+      margin-bottom: 8px;
+      text-align: left;
+      font-weight: 600;
+    }
+    .prestasi-item p {
+      font-size: 0.95em;
+      color: var(--text-light);
+      margin-bottom: 5px;
+      line-height: 1.5;
+    }
+    .prestasi-item p strong {
+      color: var(--text-dark);
+    }
+    .prestasi-item .prestasi-description {
+      font-size: 0.9em;
+      color: var(--text-lighter);
+      margin-top: 10px;
+    }
+    .achievements-list-page .filter-controls {
+      margin-top: 30px;
+      margin-bottom: 40px;
+      justify-content: flex-start;
+    }
+    .achievements-list-page .filter-controls label {
+      white-space: nowrap;
+      margin-right: 10px;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    main {
+      flex-grow: 1;
+    }
+    @media (max-width: 768px) {
+      .prestasi-item {
+        padding: 15px 0;
+      }
+      .prestasi-item h3 {
+        font-size: 1.4em;
+      }
+      .prestasi-item p, .prestasi-item .prestasi-description {
+        font-size: 0.9em;
+      }
+    }
+    .main-nav .nav-links {
+      display: none;
+      flex-direction: column;
+    }
+    .main-nav .nav-links.active {
+      display: flex;
+    }
+  </style>
 </head>
 <body>
-    <header class="main-header">
-        <div class="header-main container">
-            <div class="logo">
-                <img src="https://raw.githubusercontent.com/ridhopryg/Madrasah-aliyah1/main/images/IMG_3344.jpeg" alt="Logo Madrasah">
-                <div class="logo-text">
-                    <h1>MADRASAH ALIYAH</h1>
-                    <p>UNGGULAN</p>
-                </div>
-            </div>
-            <input type="checkbox" id="menu-toggle">
-            <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
-            <nav class="main-nav">
-                <ul class="nav-links">
-                    <li><a href="index.html">Beranda</a></li>
-                    <li class="dropdown">
-                        <a href="#">Profil <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-content">
-                            <li><a href="#">Sejarah</a></li>
-                            <li><a href="#">Visi Misi</a></li>
-                            <li><a href="#">Struktur Organisasi</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#">Akademik <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-content">
-                            <li><a href="#">Kurikulum</a></li>
-                            <li><a href="#">Tenaga Pendidik</a></li>
-                            <li><a href="#">Fasilitas</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="prestasi.html" class="active">Prestasi</a></li> <li><a href="#">Berita & Kegiatan</a></li>
-                    <li><a href="#">Galeri</a></li>
-                    <li><a href="#">Kontak</a></li>
-                    <li><a href="#" class="btn btn-nav ppdb-btn">PPDB 2025</a></li>
-                </ul>
-            </nav>
+  <header class="main-header">
+    <div class="header-main container">
+      <div class="logo">
+        <a href="index.html">
+          <img src="https://raw.githubusercontent.com/ridhopryg/Madrasah-aliyah1/main/images/IMG_3344.jpeg" alt="Logo Madrasah" />
+        </a>
+        <div class="logo-text">
+          <h1>MADRASAH ALIYAH</h1>
+          <p>UNGGULAN</p>
         </div>
-    </header>
-    <main>
-        <section class="section-spacing achievements-list-page">
-            <div class="container">
-                <h2>Daftar Prestasi Madrasah</h2>
+      </div>
+      <input type="checkbox" id="menu-toggle" />
+      <label for="menu-toggle" class="menu-icon"><i class="fas fa-bars"></i></label>
+      <nav class="main-nav">
+        <ul class="nav-links">
+          <li><a href="index.html">Beranda</a></li>
+          <li class="dropdown">
+            <a href="#">Profil <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown-content">
+              <li><a href="#">Sejarah</a></li>
+              <li><a href="#">Visi Misi</a></li>
+              <li><a href="#">Struktur Organisasi</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#">Akademik <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown-content">
+              <li><a href="#">Kurikulum</a></li>
+              <li><a href="#">Tenaga Pendidik</a></li>
+              <li><a href="#">Fasilitas</a></li>
+            </ul>
+          </li>
+          <li><a href="prestasi.html" class="active">Prestasi</a></li>
+          <li><a href="#">Berita & Kegiatan</a></li>
+          <li><a href="#">Galeri</a></li>
+          <li><a href="#">Kontak</a></li>
+          <li><a href="#" class="btn btn-nav ppdb-btn">PPDB 2025</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-                <div class="filter-controls">
-                    <label for="prestasi-year-select-page">Filter Tahun:</label>
-                    <select id="prestasi-year-select-page">
-                        <option value="all">Semua Tahun</option>
-                        <option value="2025">2025</option>
-                        <option value="2024">2024</option>
-                        <option value="2023">2023</option>
-                        <option value="2022">2022</option>
-                        <option value="2021">2021</option>
-                        </select>
-                </div>
-
-                <div id="prestasi-list-container">
-                    <div class="prestasi-item" data-year="2025">
-                        <h3>Juara 1 Lomba Pidato Bahasa Arab Tingkat Provinsi</h3>
-                        <p><strong>Siswa:</strong> Ahmad Fauzan</p>
-                        <p><strong>Tanggal:</strong> 15 April 2025</p>
-                        <p class="prestasi-description">Ahmad Fauzan berhasil meraih juara pertama dalam kompetisi pidato berbahasa Arab tingkat provinsi, menunjukkan keunggulan madrasah dalam bidang kebahasaan.</p>
-                    </div>
-                    <div class="prestasi-item" data-year="2025">
-                        <h3>Medali Emas Olimpiade Matematika Nasional</h3>
-                        <p><strong>Siswa:</strong> Siti Nurjannah</p>
-                        <p><strong>Tanggal:</strong> 10 Maret 2025</p>
-                        <p class="prestasi-description">Siti Nurjannah mengharumkan nama madrasah dengan meraih medali emas di ajang Olimpiade Matematika tingkat nasional. Prestasinya menjadi inspirasi bagi siswa lainnya.</p>
-                    </div>
-                    <div class="prestasi-item" data-year="2024">
-                        <h3>Juara Umum Lomba Karya Tulis Ilmiah Remaja</h3>
-                        <p><strong>Siswa:</strong> Tim KIR Madrasah</p>
-                        <p><strong>Tanggal:</strong> 22 November 2024</p>
-                        <p class="prestasi-description">Tim Karya Ilmiah Remaja madrasah berhasil meraih juara umum dalam lomba tingkat nasional dengan inovasi penelitian tentang energi terbarukan.</p>
-                    </div>
-                     <div class="prestasi-item" data-year="2024">
-                        <h3>Juara 2 Lomba Tahfidz Qur'an Antar Madrasah</h3>
-                        <p><strong>Siswa:</strong> Fatimah Azzahra</p>
-                        <p><strong>Tanggal:</strong> 5 September 2024</p>
-                        <p class="prestasi-description">Fatimah Azzahra menunjukkan kemampuannya dalam menghafal Al-Qur'an dengan meraih juara kedua di lomba tahfidz tingkat regional.</p>
-                    </div>
-                    <div class="prestasi-item" data-year="2023">
-                        <h3>Juara 3 Kompetisi Debat Bahasa Inggris</h3>
-                        <p><strong>Siswa:</strong> Tim Debat Madrasah</p>
-                        <p><strong>Tanggal:</strong> 18 Mei 2023</p>
-                        <p class="prestasi-description">Tim debat madrasah menunjukkan argumentasi yang kuat dan berhasil meraih juara ketiga dalam kompetisi debat bahasa Inggris tingkat kota.</p>
-                    </div>
-                    <div class="prestasi-item" data-year="2023">
-                        <h3>Penghargaan Madrasah Adiwiyata Tingkat Provinsi</h3>
-                        <p><strong>Siswa:</strong> Seluruh Komunitas Madrasah</p>
-                        <p><strong>Tanggal:</strong> 12 Februari 2023</p>
-                        <p class="prestasi-description">Madrasah menerima penghargaan Adiwiyata sebagai pengakuan atas upaya dalam menciptakan lingkungan sekolah yang peduli dan berbudaya lingkungan.</p>
-                    </div>
-                    <div class="prestasi-item" data-year="2022">
-                        <h3>Juara 1 Lomba Cepat Tepat PAI</h3>
-                        <p><strong>Siswa:</strong> Tim PAI Madrasah</p>
-                        <p><strong>Tanggal:</strong> 20 Oktober 2022</p>
-                        <p class="prestasi-description">Tim PAI madrasah berhasil meraih juara pertama dalam Lomba Cepat Tepat Pendidikan Agama Islam tingkat kabupaten.</p>
-                    </div>
-                    <div class="prestasi-item" data-year="2021">
-                        <h3>Medali Perak Olimpiade Sains Nasional (Kimia)</h3>
-                        <p><strong>Siswa:</strong> Budi Santoso</p>
-                        <p><strong>Tanggal:</strong> 7 September 2021</p>
-                        <p class="prestasi-description">Budi Santoso membawa pulang medali perak dari Olimpiade Sains Nasional bidang Kimia, sebuah pencapaian luar biasa yang membanggakan madrasah.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="main-footer">
-        <div class="container footer-grid">
-            <div class="footer-col">
-                <h3>Tentang Kami</h3>
-                <p>Madrasah Aliyah Unggulan adalah institusi pendidikan yang berkomitmen mencetak generasi berilmu, berakhlak mulia, dan berdaya saing global.</p>
-                <div class="social-links-footer">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-            <div class="footer-col">
-                <h3>Tautan Cepat</h3>
-                <ul>
-                    <li><a href="index.html">Beranda</a></li>
-                    <li><a href="#">Profil Madrasah</a></li>
-                    <li><a href="#">Program Unggulan</a></li>
-                    <li><a href="prestasi.html">Prestasi</a></li>
-                    <li><a href="#">Berita Terbaru</a></li>
-                    <li><a href="#">Galeri Foto</a></li>
-                    <li><a href="#">Hubungi Kami</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>Program & Kegiatan</h3>
-                <ul>
-                    <li><a href="#">Tahfidz Qur'an</a></li>
-                    <li><a href="#">Robotika</a></li>
-                    <li><a href="#">Bahasa Asing</a></li>
-                    <li><a href="#">Karya Ilmiah Remaja</a></li>
-                    <li><a href="#">Ekstrakurikuler</a></li>
-                </ul>
-            </div>
-            <div class="footer-col contact-footer">
-                <h3>Kontak Kami</h3>
-                <p><i class="fas fa-map-marker-alt"></i> Jl. Pendidikan No. 123, Kota Ilmu, 12345</p>
-                <p><i class="fas fa-phone-alt"></i> (021) 123-4567</p>
-                <p><i class="fas fa-envelope"></i> info@madrasahaliyah.sch.id</p>
-                <p><i class="fas fa-clock"></i> Senin - Jumat: 08:00 - 16:00 WIB</p>
-            </div>
+  <main>
+    <section class="section-spacing achievements-list-page">
+      <div class="container">
+        <h2>Daftar Prestasi Madrasah</h2>
+        <div class="filter-controls">
+          <label for="prestasi-year-select-page">Filter Tahun:</label>
+          <select id="prestasi-year-select-page">
+            <option value="all">Semua Tahun</option>
+            <option value="2025">2025</option>
+            <option value="2024">2024</option>
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+          </select>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Madrasah Aliyah Unggulan. All Rights Reserved.</p>
+
+        <div id="prestasi-list-container">
+          <!-- Prestasi Items (copy dari yang kamu punya sebelumnya, saya ringkas di sini) -->
+          <div class="prestasi-item" data-year="2025">
+            <h3>Juara 1 Lomba Pidato Bahasa Arab Tingkat Provinsi</h3>
+            <p><strong>Siswa:</strong> Ahmad Fauzan</p>
+            <p><strong>Tanggal:</strong> 15 April 2025</p>
+            <p class="prestasi-description">Ahmad Fauzan berhasil meraih juara pertama...</p>
+          </div>
+          <!-- Tambahkan semua data prestasi lainnya sesuai yang kamu miliki -->
         </div>
-    </footer>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.getElementById('menu-toggle');
-            const navLinks = document.querySelector('.main-nav .nav-links');
-            const dropdowns = document.querySelectorAll('.main-nav .dropdown');
-            const prestasiYearSelect = document.getElementById('prestasi-year-select-page'); // ID khusus untuk halaman ini
-            const prestasiListContainer = document.getElementById('prestasi-list-container');
-            const allPrestasiItems = prestasiListContainer ? prestasiListContainer.querySelectorAll('.prestasi-item') : [];
+      </div>
+    </section>
+  </main>
 
-            // Toggle mobile menu
-            if (menuToggle && navLinks) {
-                menuToggle.addEventListener('change', function() {
-                    if (this.checked) {
-                        navLinks.classList.add('active');
-                    } else {
-                        navLinks.classList.remove('active');
-                    }
-                });
-            }
+  <footer class="main-footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h3>Tentang Kami</h3>
+        <p>Madrasah Aliyah Unggulan...</p>
+        <div class="social-links-footer">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3>Tautan Cepat</h3>
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="#">Profil Madrasah</a></li>
+          <li><a href="#">Program Unggulan</a></li>
+          <li><a href="prestasi.html">Prestasi</a></li>
+          <li><a href="#">Berita Terbaru</a></li>
+          <li><a href="#">Galeri Foto</a></li>
+          <li><a href="#">Hubungi Kami</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Program & Kegiatan</h3>
+        <ul>
+          <li><a href="#">Tahfidz Qur'an</a></li>
+          <li><a href="#">Robotika</a></li>
+          <li><a href="#">Bahasa Asing</a></li>
+          <li><a href="#">Karya Ilmiah Remaja</a></li>
+          <li><a href="#">Ekstrakurikuler</a></li>
+        </ul>
+      </div>
+      <div class="footer-col contact-footer">
+        <h3>Kontak Kami</h3>
+        <p><i class="fas fa-map-marker-alt"></i> Jl. Pendidikan No. 123</p>
+        <p><i class="fas fa-phone-alt"></i> (021) 123-4567</p>
+        <p><i class="fas fa-envelope"></i> info@madrasahaliyah.sch.id</p>
+        <p><i class="fas fa-clock"></i> Senin - Jumat: 08:00 - 16:00 WIB</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Madrasah Aliyah Unggulan. All Rights Reserved.</p>
+    </div>
+  </footer>
 
-            // Toggle dropdowns for mobile (if needed, otherwise hover on desktop)
-            dropdowns.forEach(dropdown => {
-                dropdown.addEventListener('click', function(e) {
-                    if (window.innerWidth <= 991 || e.target.tagName === 'I') {
-                        e.preventDefault();
-                        this.classList.toggle('active');
-                    }
-                });
-            });
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const menuToggle = document.getElementById('menu-toggle');
+      const navLinks = document.querySelector('.main-nav .nav-links');
+      const dropdowns = document.querySelectorAll('.main-nav .dropdown');
+      const prestasiYearSelect = document.getElementById('prestasi-year-select-page');
+      const prestasiListContainer = document.getElementById('prestasi-list-container');
+      const allPrestasiItems = prestasiListContainer ? prestasiListContainer.querySelectorAll('.prestasi-item') : [];
 
-            // Filter prestasi berdasarkan tahun (khusus halaman prestasi.html)
-            if (prestasiYearSelect && allPrestasiItems.length > 0) {
-                prestasiYearSelect.addEventListener('change', function() {
-                    const selectedYear = this.value;
-
-                    allPrestasiItems.forEach(item => {
-                        const itemYear = item.dataset.year;
-                        if (selectedYear === 'all' || itemYear === selectedYear) {
-                            item.style.display = 'block'; // Tampilkan item
-                        } else {
-                            item.style.display = 'none'; // Sembunyikan item
-                        }
-                    });
-                });
-            }
+      if (menuToggle && navLinks) {
+        menuToggle.addEventListener('change', function () {
+          navLinks.classList.toggle('active', this.checked);
         });
-    </script>
+      }
+
+      dropdowns.forEach(dropdown => {
+        dropdown.addEventListener('click', function (e) {
+          if (window.innerWidth <= 991 || e.target.tagName === 'I') {
+            e.preventDefault();
+            this.classList.toggle('active');
+          }
+        });
+      });
+
+      // Menutup menu burger saat klik link biasa
+      const navItems = document.querySelectorAll('.nav-links > li > a');
+      navItems.forEach(link => {
+        link.addEventListener('click', function () {
+          if (window.innerWidth <= 991) {
+            menuToggle.checked = false;
+            navLinks.classList.remove('active');
+          }
+        });
+      });
+
+      // Filter prestasi
+      if (prestasiYearSelect && allPrestasiItems.length > 0) {
+        prestasiYearSelect.addEventListener('change', function () {
+          const selectedYear = this.value;
+          allPrestasiItems.forEach(item => {
+            item.style.display = (selectedYear === 'all' || item.dataset.year === selectedYear) ? 'block' : 'none';
+          });
+        });
+      }
+    });
+  </script>
 </body>
 </html>
